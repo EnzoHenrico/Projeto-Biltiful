@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Cadastro\" />
+    <Folder Include="Compras\" />
+    <Folder Include="Producao\" />
+    <Folder Include="Vendas\" />
+  </ItemGroup>
+
 </Project>
