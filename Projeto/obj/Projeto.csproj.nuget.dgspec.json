@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\Projeto.csproj": {}
+    "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\Projeto.csproj": {
+    "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\Projeto.csproj",
+        "projectUniqueName": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "projectName": "Projeto",
-        "projectPath": "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\Projeto.csproj",
-        "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\obj\\",
+        "projectPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "packagesPath": "C:\\Users\\enzo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\enzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
