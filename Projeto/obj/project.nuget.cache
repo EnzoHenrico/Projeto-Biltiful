@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "34nqoiZopu3x0skY+zQds+KPyPjCUlKqV++cWmlD/vE1BHFhAcFsLzIK7ZPy0MYWufuX8UkshImOKx1azekhnQ==",
+  "dgSpecHash": "nlOwhXb8aZMBmZfwz/xlVQY1K/uRfXY5xivsBtl6pchkM3Kzg8bYKwsZ+CBZ20iYKCgLJDZ0pGgGXtRdK7eIoQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\usuario\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto\\Projeto.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.29\\microsoft.windowsdesktop.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.29\\microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.29\\microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
+    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.29\\microsoft.netcore.app.host.win-x64.6.0.29.nupkg.sha512"
+  ],
   "logs": []
 }
