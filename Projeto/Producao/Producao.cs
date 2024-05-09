@@ -28,6 +28,14 @@ namespace Projeto.Producao
 
         public bool VerificarProduto(string p, string f)
         {
+            StreamReader sr = new StreamReader(p + f);
+
+            Console.WriteLine("Digite o id do produto que deseja iniciar a produção:");
+            string idProducao = Console.ReadLine();
+            foreach(string line in sr.ReadLine(p+f))
+            {
+
+            }
 
         }
     }
