@@ -19,8 +19,8 @@ namespace Projeto.Producao
         EditorArquivo manipularArquivoProducao;
         public Producao()
         {
-            EditorArquivo manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
-            EditorArquivo manipularArquivosProducao = new EditorArquivo(Diretorio, ArquivoProducao);
+             manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
+             manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
         }
         public Producao(int id, DateOnly dataproducao, string produto, int quantidade)
         {
@@ -33,7 +33,7 @@ namespace Projeto.Producao
        public  List<Producao> CopiarArquivo()
         {
             List<Producao> producaos = new List<Producao>();
-            foreach (var line in File.ReadAllLines(Diretorio + ArquivoProducao))
+            foreach (var line in manipularArquivoProducao.Ler()) 
             {
                 if (line != "")
                 {
@@ -48,44 +48,59 @@ namespace Projeto.Producao
             }
             return producaos;
         }
+        
+        public int GetId()
+        {
+            return this.Id;
+        }
         public bool VerificarProduto(string idComestico)
         {
             bool verificacaoCosmeticoExiste = false;
             foreach (var line in File.ReadLines(Diretorio + ArquivoProdutos))
             {
-                string id = line.Substring(0, 12);
+                string id = line.Substring(0, 13);
                 if (id == idComestico)
                 {
+                    string name = line.Substring(13, 20);
                     verificacaoCosmeticoExiste =  true;
                 }
             }
             return verificacaoCosmeticoExiste;
         }
-        public int GerarIdProducao()
+        public int GerarIdProducao(List<Producao> listaCopiada)
         {
-            string ultimaLinha = null;
-            int novoId = 1;
-            StreamReader sr = new StreamReader(Diretorio + ArquivoProducao);
-            while (!sr.EndOfStream)
+            if (listaCopiada.Count == 0)
             {
-                ultimaLinha = sr.ReadLine();
+                return 1;
             }
-            if(ultimaLinha != null && ultimaLinha != "99999")
+            else
             {
-                int ultimoId = int.Parse(ultimaLinha.Substring(0, 4));
-
-                if (ultimoId < 99999)
-                {
-                    novoId = ultimoId + 1;
-                }
-                else
-                {
-                    Console.WriteLine("Não é possível gerar mais IDs. Limite de 99999 alcançado.");
-                }
-
+                Producao ultimaLinha = listaCopiada.Last();
+                return ultimaLinha.Id + 1;
             }
-            return novoId;
-            
+            //string ultimaLinha = null;
+            //int novoId = 1;
+            //StreamReader sr = new StreamReader(Diretorio + ArquivoProducao);
+            //while (!sr.EndOfStream)
+            //{
+            //    ultimaLinha = sr.ReadLine();
+            //}
+            //if(ultimaLinha != null && ultimaLinha != "99999")
+            //{
+            //    int ultimoId = int.Parse(ultimaLinha.Substring(0, 4));
+
+            //    if (ultimoId < 99999)
+            //    {
+            //        novoId = ultimoId + 1;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Não é possível gerar mais IDs. Limite de 99999 alcançado.");
+            //    }
+
+            //}
+            //return novoId;
+
         }
         public void FormatarProArquivo(List<Producao> producaoLista)
         {
@@ -98,27 +113,24 @@ namespace Projeto.Producao
                 
             } sw.Close();
         }
-        public void CriarProducao()
+        public int RetornarQuantidadeProducao()
         {
-            StreamWriter sw = new StreamWriter(Diretorio + ArquivoProducao);
-
-            Console.WriteLine("Digite o id do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");
-            string idCosmetico = Console.ReadLine();
-            bool verificar = VerificarProduto(idCosmetico);
+            int quantidadeProduto = 0 ;
             do
             {
                 try
                 {
                     Console.WriteLine("Informe a quantidade do produto a ser produzido (Máximo de 999 unidades):");
-                    int quantidade = int.Parse(Console.ReadLine());
+                    quantidadeProduto = int.Parse(Console.ReadLine());
 
-                    if (quantidade < 0 || quantidade > 999)
+                    if (quantidadeProduto < 0 || quantidadeProduto > 999)
                     {
                         Console.WriteLine("Quantidade inválida. Por favor, insira um valor entre 0 e 999.");
                     }
                     else
                     {
-                      break;
+
+                        break;
                     }
                 }
                 catch (FormatException)
@@ -132,23 +144,35 @@ namespace Projeto.Producao
 
                 Console.WriteLine();
                 Console.WriteLine("Deseja tentar novamente? (S/N)");
-                string resposta = Console.ReadLine();
-                if (resposta.ToUpper() != "S")
+                string resposta = Console.ReadLine().ToUpper();
+                if (resposta[0] != 'S')
                 {
                     break;
                 }
             } while (true);
+            return quantidadeProduto;
+        }
+        public void CriarProducao()
+        {
+            
+            List<Producao> novaProducao;
+            int quantidadeProduto;
+            Console.WriteLine("Digite o codigo do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");
+            string idCosmetico = Console.ReadLine();
+            bool verificar = VerificarProduto(idCosmetico);
+            
 
-            if (verificar) 
-            { 
-                
-
+            if (verificar == true) 
+            {
+                novaProducao = CopiarArquivo();
+                novaProducao.Add(new(GerarIdProducao(novaProducao), DateOnly.FromDateTime(DateTime.Now), idCosmetico, RetornarQuantidadeProducao()));
+                FormatarProArquivo(novaProducao);
             }
 
         }
         public override string? ToString()
         {
-            return this.Id + ""  + this.DataProducao + this.Produto + this.Quantidade;
+            return "Id da produção: " + this.Id + "\nData da produção: "  + this.DataProducao + "\nCodigo do produto: " + this.Produto + "\nQuantidade: " + this.Quantidade;
         } 
     }
 }

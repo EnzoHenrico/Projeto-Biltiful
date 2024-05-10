@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
+    "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
+    "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "projectUniqueName": "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "projectName": "Projeto",
-        "projectPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
-        "packagesPath": "C:\\Users\\Cauê\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
+        "projectPath": "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "packagesPath": "C:\\Users\\CauÃª\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cauem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\CauÃª\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -55,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }
