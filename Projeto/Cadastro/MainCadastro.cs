@@ -50,7 +50,7 @@ namespace Projeto.Cadastro
         
         private void menuCliente()
         {
-            string diretorio = @"C:/Biltiful/";
+            string diretorio = @"C:\Biltiful\";
             string arquivo = "Cliente.dat";
             ManipuladorClientes manipulador = new(diretorio, arquivo);
 

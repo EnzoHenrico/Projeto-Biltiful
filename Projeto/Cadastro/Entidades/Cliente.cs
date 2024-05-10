@@ -54,8 +54,62 @@ namespace Projeto.Cadastro.Entidades
                    Situacao + "\n";
         }
 
+        public string GetCpf()
+        {
+            return Cpf;
+        }
+
         public static bool VerificarCpf(string cpf)
         {
+            // Calcular validade dos dígitos verificadores
+            int digitoVerificador1 = cpf[9];
+            int digitoVerificador2 = cpf[10];
+
+            // Digito 1 
+            // Multiplicar os primeiros 9 digitos, da direita pra esquerda por 2++
+            int multiplicador = 2, acumulador = 0;
+            for (int i = cpf.Length - 2; i >= 0; i--)
+            {
+                acumulador += cpf[i] * multiplicador;
+                multiplicador++;
+            }
+            
+            // Quando o resto da divisão por 11 for menor que 2, dígito tem que ser igual a 0
+            int resto = acumulador % 11;
+            if (resto < 2 && digitoVerificador1 != 0)
+            {
+                return false;
+            }
+
+            // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
+            if (digitoVerificador1 != (11 - resto))
+            {
+                return false;
+            }
+
+            // Digito 2
+            // 
+            multiplicador = 2; 
+            acumulador = 0;
+            for (int i = cpf.Length - 1; i >= 0; i--)
+            {
+                acumulador += cpf[i] * multiplicador;
+                multiplicador++;
+            }
+
+            // Quando o resto da divisão por 11 for menor que 2, dígito tem que ser igual a 0
+            resto = acumulador % 11;
+            if (resto < 2 && digitoVerificador2 != 0)
+            {
+                return false;
+            }
+
+            // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
+            if (digitoVerificador2 != (11 - resto))
+            {
+                return false;
+            }
+
             return true;
         }
 
