@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Numerics;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,14 +12,13 @@ namespace Projeto.Compras
 {
     internal class Compra
     {
-        int Id { get; set; }
-        DateOnly DataCompra { get; set; }
-        string Fornecedor { get; set; }
-        int ValorTotal { get; set; }
+        int Id;
+        DateOnly DataCompra;
+        string Fornecedor;
+        int ValorTotal;
 
         public Compra()
-        {           
-        }
+        { }
 
         public Compra(int id, DateOnly dataCompra, string fornecedor, int valorTotal)
         {
@@ -24,5 +27,8 @@ namespace Projeto.Compras
             Fornecedor = fornecedor;
             ValorTotal = valorTotal;
         }
+
+        
+
     }
 }

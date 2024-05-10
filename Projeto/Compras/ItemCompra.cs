@@ -8,15 +8,15 @@ namespace Projeto.Compras
 {
     internal class ItemCompra
     {
-        int Id { get; set; }
-        DateOnly DataCompra { get; set; }
-        int MateriaPrima { get; set; }
-        int Quantidade { get; set; }
-        int ValorUnitario { get; set; }
-        int TotalItem { get; set; }
+        int Id;
+        DateOnly DataCompra;
+        int MateriaPrima;
+        int Quantidade;
+        int ValorUnitario;
+        int TotalItem;
 
         public ItemCompra()
-        {          
+        {
         }
 
         public ItemCompra(int id, DateOnly dataCompra, int materiaPrima, int quantidade, int valorUnitario, int totalItem)
@@ -27,6 +27,10 @@ namespace Projeto.Compras
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
             TotalItem = totalItem;
+        }
+        public int PegarTotalItem()
+        {
+            return TotalItem;
         }
     }
 }

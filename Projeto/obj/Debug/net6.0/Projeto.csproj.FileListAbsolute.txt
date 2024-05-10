@@ -1,0 +1,15 @@
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfoInputs.cache
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfo.cs
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.csproj.CoreCompileInputs.cache
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.sourcelink.json
+C:\repositories\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.exe
+C:\repositories\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.deps.json
+C:\repositories\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.runtimeconfig.json
+C:\repositories\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.dll
+C:\repositories\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.pdb
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.dll
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\refint\Projeto.dll
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.pdb
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.genruntimeconfig.cache
+C:\repositories\Projeto-Biltiful\Projeto\obj\Debug\net6.0\ref\Projeto.dll
