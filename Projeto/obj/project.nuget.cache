@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nlOwhXb8aZMBmZfwz/xlVQY1K/uRfXY5xivsBtl6pchkM3Kzg8bYKwsZ+CBZ20iYKCgLJDZ0pGgGXtRdK7eIoQ==",
+  "dgSpecHash": "PN/knRvLSj3F0lLZ4CVcTn9MrFrrmtANLYnwa/vHqDVmBW4RF4BjOobuVbL9YKBFrnf9u8Dpcbi2XpJryaq/Ug==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.29\\microsoft.windowsdesktop.app.ref.6.0.29.nupkg.sha512",
-    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.29\\microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
-    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.29\\microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512",
-    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.29\\microsoft.netcore.app.host.win-x64.6.0.29.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

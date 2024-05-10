@@ -1,5 +1,4 @@
 ﻿using Projeto.Cadastro;
-using Projeto.Cadastro.Manipuladores;
 
 namespace Projeto
 {
