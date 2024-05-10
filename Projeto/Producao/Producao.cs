@@ -19,8 +19,8 @@ namespace Projeto.Producao
         EditorArquivo manipularArquivoProducao;
         public Producao()
         {
-             manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
-             manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
+             this.manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
+             this.manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
         }
         public Producao(int id, DateOnly dataproducao, string produto, int quantidade)
         {
@@ -123,14 +123,13 @@ namespace Projeto.Producao
                     Console.WriteLine("Informe a quantidade do produto a ser produzido (Máximo de 999 unidades):");
                     quantidadeProduto = int.Parse(Console.ReadLine());
 
-                    if (quantidadeProduto < 0 || quantidadeProduto > 999)
+                    if (quantidadeProduto > 0 && quantidadeProduto < 1000)
                     {
-                        Console.WriteLine("Quantidade inválida. Por favor, insira um valor entre 0 e 999.");
+                        break;
                     }
                     else
                     {
-
-                        break;
+                        Console.WriteLine("Quantidade inválida. Por favor, insira um valor entre 0 e 999.");
                     }
                 }
                 catch (FormatException)
