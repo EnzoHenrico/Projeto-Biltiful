@@ -2,7 +2,14 @@
   "version": 2,
   "dgSpecHash": "rnGwQ05RgkpqXM9nDcqj8DmNJ+fgLexhjw+YOHMbjSJXtIXsjTzdgvL72PiBpEjOdeRD8+c/rGC32m06mvU/sQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CauÃª\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+  "projectFilePath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\cauem\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
