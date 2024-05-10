@@ -57,8 +57,7 @@ namespace Projeto.Cadastro
             Console.Write("Selecione a ação: :\n" +
                           "1 - Cadastrar novo cliente\n" +
                           "2 - Buscar clientes ativos\n" +
-                          "3 - Editar cliente\n" +
-                          "4 - Teste\n\n" +
+                          "3 - Editar cliente\n\n" +
                           "Opção: ");
 
             string opcao = Console.ReadLine();

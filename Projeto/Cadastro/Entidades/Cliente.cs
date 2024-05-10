@@ -34,7 +34,24 @@ namespace Projeto.Cadastro.Entidades
 
         public Cliente(string dadosDoArquivo)
         {
+            Cpf = dadosDoArquivo.Substring(0, 11);
+            Nome = dadosDoArquivo.Substring(11, 50);
+            DataNascimento = DateOnly.ParseExact(dadosDoArquivo.Substring(61, 8), "ddMMyyyy"); ;
+            Sexo = dadosDoArquivo[69];
+            UltimaCompra = DateOnly.ParseExact(dadosDoArquivo.Substring(70, 8), "ddMMyyyy");
+            DataCadastro = DateOnly.ParseExact(dadosDoArquivo.Substring(78, 8), "ddMMyyyy"); ;
+            Situacao = dadosDoArquivo[86];
+        }
 
+        public override string ToString()
+        {
+            return Cpf + "\n" +
+                   Nome + "\n" +
+                   DataNascimento + "\n" +
+                   Sexo + "\n" +
+                   UltimaCompra + "\n" +
+                   DataCadastro + "\n" +
+                   Situacao + "\n";
         }
 
         public static bool VerificarCpf(string cpf)
