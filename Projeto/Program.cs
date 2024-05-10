@@ -7,8 +7,10 @@ namespace Projeto
     {
         static void Main(string[] args)
         {
+            // Classe responsavel por validar a existencia ou permissao para manipular arquivos
+            ManipuladorArquivos.VerificarArquivosPadrao();
+
             Console.WriteLine("Biutiful Cosméticos\n");
-            
             Console.WriteLine("Qual módulo deseja acessar?\n");
             Console.WriteLine("1 - Cadastro");
             Console.WriteLine("2 - Vendas");
