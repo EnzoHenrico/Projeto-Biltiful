@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Cauê\\.nuget\\packages\\": {}
+    "C:\\Users\\cauem\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Users\\cauem\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\Cauê\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
+      "projectPath": "C:\\Users\\cauem\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+      "packagesPath": "C:\\Users\\cauem\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cauem\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Cauê\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cauem\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -40,11 +40,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -66,8 +61,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\cauem\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
