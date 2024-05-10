@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
+    "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
+    "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "projectUniqueName": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "projectName": "Projeto",
-        "projectPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "projectPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "packagesPath": "C:\\Users\\enzo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
+        "outputPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
