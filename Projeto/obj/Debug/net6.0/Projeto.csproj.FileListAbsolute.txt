@@ -1,0 +1,14 @@
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.exe
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.deps.json
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.runtimeconfig.json
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.dll
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\bin\Debug\net6.0\Projeto.pdb
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfoInputs.cache
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfo.cs
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.csproj.CoreCompileInputs.cache
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.dll
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\refint\Projeto.dll
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.pdb
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\Projeto.genruntimeconfig.cache
+C:\Users\cauem\Source\Repos\Projeto-Biltiful\Projeto\obj\Debug\net6.0\ref\Projeto.dll

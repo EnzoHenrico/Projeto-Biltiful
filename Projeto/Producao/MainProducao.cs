@@ -8,5 +8,22 @@ namespace Projeto.Producao
 {
     internal class MainProducao
     {
+        static void Main(string[] args)
+        {
+
+        Producao p = new Producao();
+            bool a;
+            int b;
+            a = p.VerificarProduto("1010");
+            b = p.GerarIdProducao();
+            Console.WriteLine(b);
+            List<Producao> copia = new();
+           
+        }
+        
+            
+
+            
+        
     }
 }
