@@ -9,7 +9,7 @@ namespace Projeto.Producao
     internal class Producao
     {
         int Id;
-        string DataProducao;
+        DateOnly DataProducao;
         string Produto;
         int Quantidade;
         string Diretorio = @"C:\Biltiful\";
@@ -25,10 +25,10 @@ namespace Projeto.Producao
         }
 
 
-        public Producao(int id, string dataproducao, string produto, int quantidade)
+        public Producao(int id, DateOnly dataproducao, string produto, int quantidade)
         {
             id = id;
-            string DataProducao = dataproducao;
+            DateOnly DataProducao = dataproducao;
             produto = produto;
             quantidade = quantidade;
         }
@@ -89,19 +89,71 @@ namespace Projeto.Producao
         //    }
         //    return producaos;
         //}
+        public void FormatarProArquivo(List<Producao> producaoLista)
+        {
+            
+            string salvarArquivo = "";
+            StreamWriter sw = new StreamWriter(Diretorio + ArquivoProducao);
+            foreach (var objeto in producaoLista)
+            {
+                
+                salvarArquivo = $"{objeto.Id.ToString().PadLeft(5,'0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.Produto.ToString().PadRight(13,' ')}{objeto.Quantidade.ToString().PadLeft(5,'0')}";
+            }
+            while
+
+
+        }
         public void CriarProducao()
         {
+            StreamWriter sw = new StreamWriter(Diretorio + ArquivoProducao);
 
             Console.WriteLine("Digite o id do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");
             string idCosmetico = Console.ReadLine();
             bool verificar = VerificarProduto(idCosmetico);
-            Console.WriteLine("Informe a quantidade do produto a ser produzido");
-            int quantidade = int.Parse(Console.ReadLine());
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Informe a quantidade do produto a ser produzido (Máximo de 999 unidades):");
+                    int quantidade = int.Parse(Console.ReadLine());
+
+                    if (quantidade < 0 || quantidade > 999)
+                    {
+                        Console.WriteLine("Quantidade inválida. Por favor, insira um valor entre 0 e 999.");
+                    }
+                    else
+                    {
+                      break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Erro: entrada inválida. Por favor, insira um número inteiro.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Erro: " + e.Message);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Deseja tentar novamente? (S/N)");
+                string resposta = Console.ReadLine();
+                if (resposta.ToUpper() != "S")
+                {
+                    break;
+                }
+            } while (true);
+
+            if (verificar) 
+            { 
+                
+
+            }
 
         }
         public override string? ToString()
         {
-            return this.Id + this.DataProducao + this.Produto + this.Quantidade;
+            return this.Id + ""  + this.DataProducao + this.Produto + this.Quantidade;
         } 
     }
 }
