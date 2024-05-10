@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
+    "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
+    "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "projectUniqueName": "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "projectName": "Projeto",
-        "projectPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+        "projectPath": "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
         "packagesPath": "C:\\Users\\Cauê\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cauê\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
+        "outputPath": "C:\\Users\\Cauê\\source\\repos\\Projeto-Biltiful\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cauê\\AppData\\Roaming\\NuGet\\NuGet.Config",
