@@ -31,6 +31,7 @@ namespace Projeto.Vendas.Utils
                 Console.WriteLine("ERRO: Cliente sem cadastro. Suspendendo operação.");
                 return false;
             }
+            clientes.Close();
             return VerificarInadimplente(UltimoCliente, cpf);
         }
 
@@ -60,7 +61,6 @@ namespace Projeto.Vendas.Utils
             return VerificarMaioridade(cliente);
         }
 
-
         static bool VerificarMaioridade(string cliente)
         {
             int dia = int.Parse(cliente.Substring(62, 2));
@@ -75,5 +75,4 @@ namespace Projeto.Vendas.Utils
             else return true;
         }
     }
-
 }

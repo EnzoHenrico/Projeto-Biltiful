@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projeto.Vendas.Utils;
-using Projeto.Vendas;
 
 namespace Projeto.Vendas
 {
@@ -15,7 +14,7 @@ namespace Projeto.Vendas
         public string Cliente {get; set;}
         public float ValorTotal {get; set;}
 
-        public Venda() { }
+        public Venda() { Id = NovoId(); }
 
         public Venda(DateOnly dataVenda, string cliente, float valorTotal)
         {
@@ -27,10 +26,11 @@ namespace Projeto.Vendas
 
         private int NovoId()
         {
-            StreamReader sr = new (@"C:\BILTIFUL\Venda.dat");
+            StreamReader sr = new (@"C:\Biltiful\Venda.dat");
             int UltimoId = 0;
             string linha;
             while ((linha = sr.ReadLine()) != null) UltimoId = int.Parse(linha.Take(5).ToArray());
+            sr.Close();
             return UltimoId++;
         }
 

@@ -26,7 +26,7 @@ namespace Projeto.Vendas
             {
                 if (!File.Exists(path + file))
                 {
-                    File.Delete(path + file);
+                    File.Create(path + file);
                 }
             }
             catch (Exception e)
