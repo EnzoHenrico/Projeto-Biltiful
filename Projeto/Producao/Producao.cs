@@ -37,7 +37,6 @@ namespace Projeto.Producao
             {
                 if (line != "")
                 {
-
                 string idCopia = line.Substring(0, 5);
                 string dataCopia = line.Substring(5, 8);
                 string codprodutoCopia = line.Substring(13, 13);
@@ -159,15 +158,15 @@ namespace Projeto.Producao
             Console.WriteLine("Digite o codigo do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");
             string idCosmetico = Console.ReadLine();
             bool verificar = VerificarProduto(idCosmetico);
-            
-
             if (verificar == true) 
             {
+                ItemProducao i = new ItemProducao();
                 novaProducao = CopiarArquivo();
-                novaProducao.Add(new(GerarIdProducao(novaProducao), DateOnly.FromDateTime(DateTime.Now), idCosmetico, RetornarQuantidadeProducao()));
+                int id = GerarIdProducao(novaProducao);
+                novaProducao.Add(new(id, DateOnly.FromDateTime(DateTime.Now), idCosmetico, RetornarQuantidadeProducao()));
                 FormatarProArquivo(novaProducao);
+                i.CriarItemProducao(id.ToString());
             }
-
         }
         public override string? ToString()
         {

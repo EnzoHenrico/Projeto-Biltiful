@@ -15,7 +15,7 @@ namespace Projeto.Producao
             string ArquivoProducao = "Producao.dat";
             string a;
             Producao p = new Producao();
-            
+
 
             //a = p.VerificarProduto("1010");
             //b = p.GerarIdProducao();
@@ -26,26 +26,32 @@ namespace Projeto.Producao
             //copia.Add(p1);
             //p.FormatarProArquivo(copia);
             //void LocalizarProducao()
-            // {
-            //     Producao p = new Producao();
-            //     List<Producao> copia = new();
-            //     copia = p.CopiarArquivo();
-            //     Console.WriteLine("Digite o id da produção que deseja localizar");
-            //     int idProducao =  int.Parse(Console.ReadLine());
-            //     foreach(var objeto in copia)
-            //     {
-            //         if (objeto.GetId() == idProducao )
-            //         {
-            //             Console.WriteLine(objeto.ToString());
-            //         }
-            //     }
+            //{
+            //    Producao p = new Producao();
+            //    List<Producao> copia = new();
+            //    copia = p.CopiarArquivo();
+            //    Console.WriteLine("Digite o id da produção que deseja localizar");
+            //    int idProducao = int.Parse(Console.ReadLine());
+            //    foreach (var objeto in copia)
+            //    {
+            //        if (objeto.GetId() == idProducao)
+            //        {
+            //            Console.WriteLine(objeto.ToString());
+            //        }
+            //    }
 
-            // }
-            // LocalizarProducao();
-            ItemProducao ip = new ItemProducao();
-            List<ItemProducao> l;
+            //}
+            //LocalizarProducao();
 
-            l = ip.CopiarArquivoItemProducao();
+            p.CriarProducao();
+            //ItemProducao ip = new ItemProducao();
+            //List<ItemProducao> l;
+
+            //ip.CriarItemProducao("1");
+            //l = ip.CopiarArquivoItemProducao();
+            //double teste = float.Parse(Console.ReadLine());
+            //l.Add(new("10",DateOnly.Parse("11/05/2024"),"MP0001",teste));
+            //ip.FormatarProArquivo(l);
         }
     }
 }
