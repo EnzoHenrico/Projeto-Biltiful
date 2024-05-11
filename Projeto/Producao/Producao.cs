@@ -101,6 +101,52 @@ namespace Projeto.Producao
             //return novoId;
 
         }
+        public void LocalizarProducao()
+        {
+            Producao p = new Producao();
+            List<Producao> copia = new();
+            copia = p.CopiarArquivo();
+            Console.WriteLine("Digite o id da produção que deseja localizar");
+            int idProducao = int.Parse(Console.ReadLine());
+            foreach (var objeto in copia)
+            {
+                if (objeto.GetId() == idProducao)
+                {
+                    Console.WriteLine(objeto.ToString());
+                }
+            }
+        }
+
+        public void RemoverItemProducao()
+        {
+            List<Producao> producaoRemover;
+            producaoRemover = CopiarArquivo();
+            Console.WriteLine("Digite o Id da produção que deseja remover: ");
+            int idProducao = int.Parse(Console.ReadLine());
+            bool existe = false;
+            foreach (Producao item in producaoRemover)
+            {
+                if (item.Id == idProducao)
+                {
+                    existe = true;
+                }
+            }
+            if (existe)
+            {
+                producaoRemover.RemoveAll(item => item.Id == idProducao);
+                FormatarProArquivo(producaoRemover);
+                ItemProducao ip = new ItemProducao();
+                ip.RemoverItemProducao(idProducao);
+                Console.WriteLine("Removido com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("O id fornecido não existe no arquivo");
+            }
+
+
+
+        }
         public void FormatarProArquivo(List<Producao> producaoLista)
         {
             StreamWriter sw = new StreamWriter(Diretorio + ArquivoProducao);
@@ -152,7 +198,6 @@ namespace Projeto.Producao
         }
         public void CriarProducao()
         {
-            
             List<Producao> novaProducao;
             int quantidadeProduto;
             Console.WriteLine("Digite o codigo do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");

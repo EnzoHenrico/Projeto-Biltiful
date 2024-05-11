@@ -62,6 +62,37 @@ namespace Projeto.Producao
             }
             return itensProducao;
         }
+        public void FormatarProArquivo(List<ItemProducao> itensProducao)
+        {
+            StreamWriter sw = new StreamWriter(Diretorio + ArquivoItemProducao);
+            foreach (var objeto in itensProducao)
+            {
+                string salvarArquivo = "";
+                //string idFormatada = objeto.Id.PadLeft(5, '0');
+                //string DataFormatada = objeto.DataProducao.ToString("ddMMyyyy");
+                //string MPFormatada = "MP" + objeto.MateriaPrima.ToString().PadLeft(4,'0');
+                ////salvarArquivo += objeto.Id.PadLeft(5, '0');
+                ////salvarArquivo += objeto.DataProducao.ToString("ddMMyyyy");
+                //salvarArquivo += "MP" + objeto.MateriaPrima.ToString().PadLeft(4, '0').Substring(2, 4);
+                //salvarArquivo += objeto.QuantidadeMateriaPrima.ToString("000.00").Remove(3, 1);
+                salvarArquivo = $"{objeto.Id.PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.MateriaPrima}{objeto.QuantidadeMateriaPrima.ToString("000.00").Remove(3, 1)}";
+                sw.WriteLine(salvarArquivo);
+
+            }
+            sw.Close();
+        }
+        public bool VerificarMateriaAtiva(string nome)
+        {
+            bool status = false;
+            foreach (var linha in ManipularArquivoMateria.Ler())
+            {
+                if (linha.Substring(6,20) == nome && linha.Substring(42,1) == "A")
+                {
+                    status = true;
+                }
+            }
+            return status;
+        }
         public void CriarItemProducao(string idProducao)
         {
             List<ItemProducao> arquivoCopiado;
@@ -100,36 +131,33 @@ namespace Projeto.Producao
                 Console.WriteLine("");
             }
         }
-        public void FormatarProArquivo(List<ItemProducao> itensProducao)
+        public void RemoverItemProducao(int idProducao)
         {
-            StreamWriter sw = new StreamWriter(Diretorio + ArquivoItemProducao);
-            foreach (var objeto in itensProducao)
+            List<ItemProducao> itemRemover;
+            itemRemover = CopiarArquivoItemProducao();
+           
+            bool existe = false;
+            foreach(ItemProducao item in itemRemover)
             {
-                string salvarArquivo = "";
-                //string idFormatada = objeto.Id.PadLeft(5, '0');
-                //string DataFormatada = objeto.DataProducao.ToString("ddMMyyyy");
-                //string MPFormatada = "MP" + objeto.MateriaPrima.ToString().PadLeft(4,'0');
-                ////salvarArquivo += objeto.Id.PadLeft(5, '0');
-                ////salvarArquivo += objeto.DataProducao.ToString("ddMMyyyy");
-                //salvarArquivo += "MP" + objeto.MateriaPrima.ToString().PadLeft(4, '0').Substring(2, 4);
-                //salvarArquivo += objeto.QuantidadeMateriaPrima.ToString("000.00").Remove(3, 1);
-                salvarArquivo = $"{objeto.Id.PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.MateriaPrima}{objeto.QuantidadeMateriaPrima.ToString("000.00").Remove(3, 1)}";
-                sw.WriteLine(salvarArquivo);
-
-            }
-            sw.Close();
-        }
-        public bool VerificarMateriaAtiva(string nome)
-        {
-            bool status = false;
-            foreach (var linha in ManipularArquivoMateria.Ler())
-            {
-                if (linha.Substring(6,20) == nome && linha.Substring(42,1) == "A")
+                if (item.Id == idProducao.ToString().PadLeft(4, '0'));
                 {
-                    status = true;
+                    existe = true;
                 }
             }
-            return status;
+            if (existe)
+            {
+                itemRemover.RemoveAll(item => item.Id == idProducao.ToString().PadLeft(4,'0'));
+                FormatarProArquivo(itemRemover);
+                Console.WriteLine("Removido com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("O id fornecido não existe no arquivo");
+            }
+            
+            
+                
         }
+
     }
 }
