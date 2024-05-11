@@ -8,22 +8,22 @@ namespace Projeto.Cadastro.Manipuladores
 {
     internal class ManipuladorArquivos
     {
-        static readonly string Diretorio = @"C:\Biutiful\";
-        static readonly string ArquivoCliente = "Cliente.dat";
-
         public static void VerificarArquivosPadrao()
         {
             try
             {
-                if (!Directory.Exists(Diretorio))
+                // Diretorio padrão
+                if (!Directory.Exists(DicionarioStrings.Diretorio))
                 {
-                    Directory.CreateDirectory(Diretorio);
+                    Directory.CreateDirectory(DicionarioStrings.Diretorio);
                 }
 
-                if (!File.Exists(Diretorio + ArquivoCliente))
+                // Cliente.dat
+                if (!File.Exists(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoCliente))
                 {
-                    File.Create(Diretorio + ArquivoCliente);
+                    File.Create(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoCliente);
                 }
+
             }
             catch (Exception e)
             {
