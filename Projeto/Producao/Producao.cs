@@ -101,12 +101,10 @@ namespace Projeto.Producao
             //return novoId;
 
         }
-        public void LocalizarProducao()
+        public void LocalizarProducao(ItemProducao IP)
         {
-            Producao p = new Producao();
-            List<Producao> copia = new();
-            copia = p.CopiarArquivo();
-            Console.WriteLine("Digite o id da produção que deseja localizar");
+            List<Producao> copia = CopiarArquivo();
+            Console.WriteLine("Digite o ID da produção que deseja localizar");
             int idProducao = int.Parse(Console.ReadLine());
             foreach (var objeto in copia)
             {
@@ -115,9 +113,11 @@ namespace Projeto.Producao
                     Console.WriteLine(objeto.ToString());
                 }
             }
+            IP.LocalizarItemProducao(idProducao);
+
         }
 
-        public void RemoverItemProducao()
+        public void RemoverProducao()
         {
             List<Producao> producaoRemover;
             producaoRemover = CopiarArquivo();
@@ -141,7 +141,7 @@ namespace Projeto.Producao
             }
             else
             {
-                Console.WriteLine("O id fornecido não existe no arquivo");
+                Console.WriteLine("O Id fornecido não existe no arquivo");
             }
 
 
@@ -196,21 +196,43 @@ namespace Projeto.Producao
             } while (true);
             return quantidadeProduto;
         }
-        public void CriarProducao()
+        public void CriarProducao(ItemProducao IP)
         {
-            List<Producao> novaProducao;
-            int quantidadeProduto;
-            Console.WriteLine("Digite o codigo do cosmetico que deseja inciar a produção seguindo a regra de 13 digitos");
-            string idCosmetico = Console.ReadLine();
-            bool verificar = VerificarProduto(idCosmetico);
-            if (verificar == true) 
+            string idCosmetico = "";
+            bool verificando = false;
+            List<ItemProducao> backupArquivoItemProducao = IP.CopiarArquivoItemProducao();
+            List<ItemProducao> NovoItemProducao;
+            List<Producao> copiaProducao = CopiarArquivo();
+            List<Producao> novaProducao = CopiarArquivo();
+            do
             {
-                ItemProducao i = new ItemProducao();
-                novaProducao = CopiarArquivo();
-                int id = GerarIdProducao(novaProducao);
-                novaProducao.Add(new(id, DateOnly.FromDateTime(DateTime.Now), idCosmetico, RetornarQuantidadeProducao()));
+                try
+                {
+                    Console.WriteLine("Digite o codigo de barras do cosmético que deseja inciar a produção seguindo a regra de 13 digitos");
+                    idCosmetico = Console.ReadLine();
+                    verificando = VerificarProduto(idCosmetico);
+                    if(verificando == false)
+                    {
+                        Console.WriteLine("Cosmético não encontrado na base da dados.");
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("ERRO! Por favor digite um Codigo de Barras válido.");
+                }
+            } while (VerificarProduto(idCosmetico) == false);
+            int id = GerarIdProducao(copiaProducao);
+            novaProducao.Add(new(id, DateOnly.FromDateTime(DateTime.Now), idCosmetico, RetornarQuantidadeProducao()));
+            NovoItemProducao = IP.CriarItemProducao(id.ToString().PadLeft(5, '0'));
+            if (backupArquivoItemProducao.Count() < NovoItemProducao.Count && copiaProducao.Count < novaProducao.Count())
+            {
+                IP.FormatarProArquivo(NovoItemProducao);
                 FormatarProArquivo(novaProducao);
-                i.CriarItemProducao(id.ToString());
+                Console.WriteLine("Produção registrada com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Não foi possivel registrar a produção");
             }
         }
         public override string? ToString()

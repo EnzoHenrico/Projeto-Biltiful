@@ -93,44 +93,100 @@ namespace Projeto.Producao
             }
             return status;
         }
-        public void CriarItemProducao(string idProducao)
+
+        public ItemProducao[] PedirMateriaPrima(string idProducao)
         {
-            List<ItemProducao> arquivoCopiado;
-            Console.WriteLine("Quantas materias prima precisa");
-            int numeroMateriaPrima = int.Parse(Console.ReadLine());
-            ItemProducao[] backup = new ItemProducao[numeroMateriaPrima] ;
+            int numeroMateriaPrima = 0 ;
             
-            int contador = 0;
-            for (int i = 0; i < numeroMateriaPrima; i++)
+            do
             {
-                Console.WriteLine("digite o id da materia prima");
-                int id = int.Parse(Console.ReadLine());
+                try
+                {
+                    Console.WriteLine("Quantas matérias primas são necessárias?");
+                    numeroMateriaPrima = int.Parse(Console.ReadLine());
+                    if(numeroMateriaPrima < 2)
+                    {
+                        Console.WriteLine("O número de materias primas deve ser pelo menos 2. Tente novamente");
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("ERRO! Por favor digite um valor válido");
+                }
+
+            } while (numeroMateriaPrima < 2);
+            ItemProducao[] backup = new ItemProducao[numeroMateriaPrima];
+            int contador = 0;
+            while(contador <  numeroMateriaPrima) 
+            {
+                int id = 0 ;
+                Console.WriteLine("Digite o ID da materia prima");
+                try
+                {
+                    id = int.Parse(Console.ReadLine());
+                } catch
+                {
+                    Console.WriteLine("ERRO! Por favor digite um valor válido para ID");
+                }
                 if (VerificarMateriaExiste(id) != "")
                 {
                     if (VerificarMateriaAtiva(VerificarMateriaExiste(id)))
                     {
-                        Console.WriteLine("quantidade");
+                        string nome = getNomeMP(id);
+                        Console.WriteLine($"Digite a quantidade de {nome} que usara.  ");
                         double quantidade = float.Parse(Console.ReadLine());
-                        ItemProducao item = new(idProducao,DateOnly.FromDateTime(DateTime.Now),"MP" + id.ToString().PadLeft(4,'0'),quantidade);
+                        ItemProducao item = new(idProducao, DateOnly.FromDateTime(DateTime.Now), "MP" + id.ToString().PadLeft(4, '0'), quantidade);
                         backup[contador] = item;
                         contador++;
                     }
+                    else
+                    {
+                        Console.WriteLine("Matéria prima inativa.");
+                    }
                 }
-            }
-            if (contador == numeroMateriaPrima)
-            {
-                arquivoCopiado = CopiarArquivoItemProducao();
-                for(int i = 0;i < numeroMateriaPrima;i++)
+                else
                 {
-                    arquivoCopiado.Add(backup[i]);
+                    Console.WriteLine("Materia prima não encontrada na base de dados.");
                 }
-                FormatarProArquivo(arquivoCopiado);
             }
-            else
+            return backup;
+        }
+        public string getNomeMP(int idProducao)
+        {
+            string nome = "";
+            foreach (var linha in ManipularArquivoMateria.Ler())
             {
-                Console.WriteLine("");
+                if(linha.Substring(2,4) == idProducao.ToString().PadLeft(4,'0'))
+                {
+                    nome =  linha.Substring(6, 20);
+                }
+            }
+            return nome;
+        }
+        public void LocalizarItemProducao(int idProducao)
+        {
+            foreach(var linha in ManipularArquivoItemProducao.Ler())
+            {
+                if (linha.Substring(0, 5) == idProducao.ToString().PadLeft(5,'0'))
+                {
+                    Console.WriteLine("Materia prima utilizada : " + linha.Substring();
+                }
+
             }
         }
+        public List<ItemProducao> CriarItemProducao(string idProducao)
+        {
+            List<ItemProducao> arquivoCopiado;
+            ItemProducao[] objetos = PedirMateriaPrima(idProducao);
+            arquivoCopiado = CopiarArquivoItemProducao();
+            for (int i = 0; i < objetos.Length; i++)
+            {
+                arquivoCopiado.Add(objetos[i]);
+            }
+            return arquivoCopiado;
+            
+        }
+
         public void RemoverItemProducao(int idProducao)
         {
             List<ItemProducao> itemRemover;
@@ -139,25 +195,26 @@ namespace Projeto.Producao
             bool existe = false;
             foreach(ItemProducao item in itemRemover)
             {
-                if (item.Id == idProducao.ToString().PadLeft(4, '0'));
+                if (item.Id == idProducao.ToString().PadLeft(5, '0'));
                 {
                     existe = true;
                 }
             }
             if (existe)
             {
-                itemRemover.RemoveAll(item => item.Id == idProducao.ToString().PadLeft(4,'0'));
+                itemRemover.RemoveAll(item => item.Id == idProducao.ToString().PadLeft(5,'0'));
                 FormatarProArquivo(itemRemover);
                 Console.WriteLine("Removido com sucesso");
             }
             else
             {
                 Console.WriteLine("O id fornecido não existe no arquivo");
-            }
-            
-            
-                
+            }    
         }
 
+        public override string? ToString()
+        {
+            return "\nMateria Prima Utilizada: " + this.MateriaPrima + "\nQuantidade Utilizada: " + this.QuantidadeMateriaPrima;
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace Projeto.Producao
             string a;
             int opcao = 0;
             Producao p = new Producao();
+            ItemProducao ip = new ItemProducao();
 
             void Menu() 
             {
@@ -23,9 +24,7 @@ namespace Projeto.Producao
                 Console.WriteLine("[2] - LOCALIZAR PRODUÇÃO");
                 Console.WriteLine("[3] - REMOVER PRODUÇÃO");
                 Console.WriteLine("[4] - SAIR DO PROGRAMA");
-
             }
-
             do
             {
                 Menu();
@@ -34,13 +33,13 @@ namespace Projeto.Producao
                 switch(opcao)
                 {
                     case 1:
-                        p.CriarProducao();
+                        p.CriarProducao(ip);
                         break;
                     case 2:
-                        p.LocalizarProducao();
+                        p.LocalizarProducao(ip);
                         break;
                     case 3:
-                        p.RemoverItemProducao();
+                        p.RemoverProducao();
                         break;
                     case 4:
                         Environment.Exit(0);
