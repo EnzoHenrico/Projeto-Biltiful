@@ -40,11 +40,12 @@ namespace Projeto.Cadastro
             do
             {
                 Console.WriteLine("\nSelecione qual informação deseja alterar: ");
-                Console.WriteLine(cliente.ImpressaoParaMenu());
+                Console.WriteLine(cliente.GerarStringParaEdicao());
                 /*
                  * 1 - Nome
                  * 2 - Data de nascimento
                  * 3 - Sexo
+                 * 4 - Situacao
                  */
                  opcao = int.Parse(Console.ReadLine());
 
@@ -56,19 +57,26 @@ namespace Projeto.Cadastro
                          cliente.Nome = novoNome;
                          break;
                      case 2:
-                         Console.WriteLine("Alterar data de nascimento (dd/mm/aaaa):");
-                         string nascimento = Console.ReadLine().Replace("/", "");
-                         int dia = int.Parse(nascimento.Substring(0, 2));
-                         int mes = int.Parse(nascimento.Substring(2, 2));
-                         int ano = int.Parse(nascimento.Substring(4, 4));
+                        Console.WriteLine("Alterar data de nascimento (dd/mm/aaaa):");
+                        string nascimento = Console.ReadLine().Replace("/", "");
+                        int dia = int.Parse(nascimento.Substring(0, 2));
+                        int mes = int.Parse(nascimento.Substring(2, 2));
+                        int ano = int.Parse(nascimento.Substring(4, 4));
 
-                         cliente.DataNascimento = new DateOnly(ano, mes, dia);
+                        cliente.DataNascimento = new DateOnly(ano, mes, dia);
                         break;
                      case 3:
-                         Console.Write("Alteração se : ");
-                         cliente.Sexo = char.Parse(Console.ReadLine());
+                        Console.Write("Alteração de Sexo: "); 
+                        cliente.Sexo = Console.ReadLine()[0];
                         break;
-                     default:
+                     case 4:
+                         string atual = cliente.Situacao == 'A' ? "ativo" : "inativo"; 
+                         string novo = cliente.Situacao == 'A' ? "intivo" : "ativo";
+
+                         Console.WriteLine($"O cliente está {atual}, confirmar aletração para {novo}? (s) Sim / (n) Não"); 
+                         if (Console.ReadLine().ToLower() == "s") cliente.InverterSituacao();
+                         break;
+                    default:
                          Console.WriteLine("\nOpção inválida, tente novamente.\n");
                          break;
                 }

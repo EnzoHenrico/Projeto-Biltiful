@@ -69,11 +69,11 @@ namespace Projeto.Cadastro.Entidades
             return dadosDoArquivo;
         }
 
-        public string ImpressaoParaMenu()
+        public string GerarStringParaEdicao()
         {
-            return $"1 - {Nome}\n" +
-                   $"2 - {DataNascimento}\n" +
-                   $"3 - {Sexo}\n";
+            return $"1 - Nome: {Nome}\n" +
+                   $"2 - Data de Nascimento: {DataNascimento}\n" +
+                   $"3 - Sexo: {Sexo}\n";
         }
 
         public static bool VerificarCpf(string cpf)
@@ -146,7 +146,5 @@ namespace Projeto.Cadastro.Entidades
         {
             UltimaCompra = ultimaCompra;
         }
-
-
     }
 }

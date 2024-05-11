@@ -39,7 +39,6 @@ namespace Projeto.Cadastro.Manipuladores
                     }
                 }
                 reader.Close();
-
             }
             catch (Exception e)
             {
@@ -58,11 +57,12 @@ namespace Projeto.Cadastro.Manipuladores
         {
             var novoCliente = EntradaClientes.CadastrarCliente();
             _listaClientes.Add(novoCliente);
+            Salvar();
         }
 
         public void Editar()
         {
-            string id = "";
+            int opcao = 0;
             Cliente? cliente = null;
             do
             {
@@ -71,11 +71,13 @@ namespace Projeto.Cadastro.Manipuladores
                 
                 if (cliente == null)
                 {
-                    Console.WriteLine("\nCPF não encontrado, tente novamente\n");
+                    Console.WriteLine("\nCPF não econtrado, selecione uma opção:");
+                    Console.WriteLine("0 - Sair \n1 - Tentar novamente\n");
+                    opcao = int.Parse(Console.ReadLine());
                 }
-            } while (cliente == null);
+            } while (opcao > 0);
 
-            EntradaClientes.AlterarCliente(_listaClientes.Find(cliente => cliente.Cpf == id));
+            EntradaClientes.AlterarCliente(cliente);
             Salvar();
         }
 
@@ -87,7 +89,8 @@ namespace Projeto.Cadastro.Manipuladores
                 foreach (var cliente in _listaClientes)
                 {
                     writer.WriteLine(cliente.FormatarParaArquivo());     
-                }                
+                } 
+                writer.Close();
             }
             catch (Exception e)
             {
