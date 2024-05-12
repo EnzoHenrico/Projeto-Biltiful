@@ -8,16 +8,9 @@ namespace Projeto.Producao
 {
     internal class MainProducao
     {
-        
-
-          public void Executar()
+       
+          public void Acesso()
             {
-
-
-                string Diretorio = @"C:\Biltiful\";
-                string ArquivoProdutos = "Cosmetico.dat";
-                string ArquivoProducao = "Producao.dat";
-                string a;
                 int opcao = 0;
                 Producao p = new Producao();
                 ItemProducao ip = new ItemProducao();
