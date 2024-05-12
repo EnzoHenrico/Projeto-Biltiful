@@ -49,25 +49,33 @@ namespace Projeto.Compras
 
             return new Compra(int.Parse(id), DateOnly.Parse(dataDia + "/" + dataMes + "/" + dataAno), fornecedor, int.Parse(valorTotal));
         }
-        static bool VerificarFornecedor(string cnpj)
+        static bool VerificarFornecedor(string cnpj, DateOnly dataCompra)
         {
             string arquivoFornecedor = "Fornecedor.dat";
             string arquivoBloqueado = "Bloqueado.dat";
             bool existe = false;
             foreach (var linha in File.ReadAllLines(pasta + arquivoFornecedor))
             {
-
                 if (cnpj == linha.Substring(0, 14).Trim())
                 {
-                    existe = true;
-                    foreach (var item in File.ReadLines(pasta + arquivoBloqueado))
+                    DateOnly dataAbertura = DateOnly.Parse(linha.Substring(80, 2).Trim() + "/" + linha.Substring(82, 4).Trim() + "/" + linha.Substring(84, 4).Trim());
+                    dataAbertura = dataAbertura.AddMonths(6);
+                    if (dataAbertura < dataCompra)
+                        Console.WriteLine("Essa empresa foi aberta a menos que 6 meses!!!!");
+                    else
                     {
-                        if (cnpj == item)
+                        existe = true;
+                        foreach (var item in File.ReadLines(pasta + arquivoBloqueado))
                         {
-                            Console.WriteLine("CNPJ bloqueado!");
-                            existe = false;
+                            if (cnpj == item)
+                            {
+                                Console.WriteLine("CNPJ bloqueado!");
+                                existe = false;
+                            }
                         }
+
                     }
+
                 }
             }
             return existe;
@@ -96,9 +104,9 @@ namespace Projeto.Compras
             do
             {
                 fornecedor = Console.ReadLine();
-                if (!VerificarFornecedor(fornecedor))
-                    Console.WriteLine("Fornecedor não existe!\nDigite o CNPJ novamente:");
-            } while (!VerificarFornecedor(fornecedor));
+                if (!VerificarFornecedor(fornecedor, dataCompra))
+                    Console.WriteLine("Digite o CNPJ novamente:");
+            } while (!VerificarFornecedor(fornecedor, dataCompra));
             Console.WriteLine("Escolha os itens Compra:");
 
             List<ItemCompra> itensCompra = new List<ItemCompra>();
@@ -219,63 +227,67 @@ namespace Projeto.Compras
         public static void Acesso()
         {
             int op = 0;
-            ChecarExistenciaArquivo();
-            compras = CarregarLista();
-            itensLista = CarregarListaItemCompra();
-            Console.WriteLine("Digite a opção desejada:");
-            Console.WriteLine("1 - Cadastre uma compra;\n" +
-                              "2 - Liste as Compras\n" +
-                              "3 - Exclua uma Compra" +
-                              "0 - Para sair");
-            op = int.Parse(Console.ReadLine());
-            switch (op)
+            do
             {
-                case 1:
-                    Console.WriteLine("CADASTRE UMA COMPRA:");
-                    CadastroCompra();
-                    break;
-                case 2:
-                    Console.WriteLine("ESCOLHA A OPÇÃO DE LISTAGEM:\n" +
-                                      "1 - Escolher uma compra por ID;\n" +
-                                      "2 - Ver primeira Compra;\n" +
-                                      "3 - Ver ultima Compra\n" +
-                                      "4 - Ver TODAS as Compras;\n" +
-                                      "0 - Sair");
-                    int op2 = int.Parse(Console.ReadLine());
-                    switch (op2)
-                    {
-                        case 1:
-                            Console.WriteLine("Digite o Id da compra:");
-                            AcharCompra(int.Parse(Console.ReadLine()));
-                            break;
-                        case 2:
-                            AcharCompra(compras.First().PegarId());
-                            break;
-                        case 3:
-                            AcharCompra(compras.Last().PegarId());
-                            break;
-                        case 4:
-                            ListarCompra();
-                            break;
-                        case 0:
-                            return;
-                        default:
-                            break;
-                    }    
-                    break;
-                case 3:
-                    Console.WriteLine("EXCLUA UMA COMPRA:");
-                    Console.WriteLine("Digite o ID da compra:");
-                    ExcluirCompra(int.Parse(Console.ReadLine()));
-                    Console.WriteLine("Compra excluida com sucesso!");
-                    break;
-                case 0:
-                    return;
-                default:
-                    Console.WriteLine("Digite uma opção válida!");
-                    break;
-            }
-            SavarLista();
+                ChecarExistenciaArquivo();
+                compras = CarregarLista();
+                itensLista = CarregarListaItemCompra();
+                Console.WriteLine("Digite a opção desejada:");
+                Console.WriteLine("1 - Cadastre uma compra;\n" +
+                                  "2 - Liste as Compras\n" +
+                                  "3 - Exclua uma Compra" +
+                                  "0 - Para sair");
+                op = int.Parse(Console.ReadLine());
+                switch (op)
+                {
+                    case 1:
+                        Console.WriteLine("CADASTRE UMA COMPRA:");
+                        CadastroCompra();
+                        break;
+                    case 2:
+                        Console.WriteLine("ESCOLHA A OPÇÃO DE LISTAGEM:\n" +
+                                          "1 - Escolher uma compra por ID;\n" +
+                                          "2 - Ver primeira Compra;\n" +
+                                          "3 - Ver ultima Compra\n" +
+                                          "4 - Ver TODAS as Compras;\n" +
+                                          "0 - Sair");
+                        int op2 = int.Parse(Console.ReadLine());
+                        switch (op2)
+                        {
+                            case 1:
+                                Console.WriteLine("Digite o Id da compra:");
+                                AcharCompra(int.Parse(Console.ReadLine()));
+                                break;
+                            case 2:
+                                AcharCompra(compras.First().PegarId());
+                                break;
+                            case 3:
+                                AcharCompra(compras.Last().PegarId());
+                                break;
+                            case 4:
+                                ListarCompra();
+                                break;
+                            case 0:
+                                return;
+                            default:
+                                break;
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("EXCLUA UMA COMPRA:");
+                        Console.WriteLine("Digite o ID da compra:");
+                        ExcluirCompra(int.Parse(Console.ReadLine()));
+                        Console.WriteLine("Compra excluida com sucesso!");
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        Console.WriteLine("Digite uma opção válida!");
+                        break;
+                }
+                SavarLista();
+            } while (op != 0);
+            //return Program.Main();
         }
     }
 }
