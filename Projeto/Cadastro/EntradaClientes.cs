@@ -53,7 +53,7 @@ namespace Projeto.Cadastro
                 Console.WriteLine("\nSelecione qual informação deseja alterar: ");
                 Console.WriteLine(cliente.GerarStringParaEdicao());
                 /*
-                 * 1 - Nome
+                 * 1 - RazaoSocial
                  * 2 - Data de nascimento
                  * 3 - Sexo
                  * 4 - Situacao

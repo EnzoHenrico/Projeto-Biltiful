@@ -127,7 +127,7 @@ namespace Projeto.Cadastro.Manipuladores
             }
         }
 
-        public void ImprimirClientesInAtivos()
+        public void ImprimirClientesInativos()
         {
             if (!_listaClientes.Any())
             {

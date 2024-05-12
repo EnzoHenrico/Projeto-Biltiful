@@ -6,62 +6,56 @@ using System.Threading.Tasks;
 
 namespace Projeto.Cadastro.Entidades
 {
-    internal class Cliente
+    internal class Fornecedor
     {
-        public string Cpf { get; }
-        public string Nome { get; set; }
-        public DateOnly DataNascimento { get; set; }
-        public char Sexo { get; set; }
+        public string Cnpj { get; }
+        public string RazaoSocial { get; set; }
+        public DateOnly DataAbertura { get; set; }
         public DateOnly UltimaCompra { get; private set; }
         public DateOnly DataCadastro { get; }
         public char Situacao { get; private set; }
 
-        public Cliente(
-            string cpf,
-            string nome, 
-            DateOnly dataNascimento, 
-            char sexo
+        public Fornecedor(
+            string cnpj,
+            string razaoSocial,
+            DateOnly dataAbertura
             )
         {
-            Cpf = cpf;
-            Nome = nome;
-            DataNascimento = dataNascimento;
-            Sexo = sexo;
+            Cnpj = cnpj;
+            RazaoSocial = razaoSocial;
+            DataAbertura = dataAbertura;
             UltimaCompra = DateOnly.FromDateTime(DateTime.Now);
             DataCadastro = DateOnly.FromDateTime(DateTime.Now);
             Situacao = 'A';
         }
 
-        public Cliente(string registro)
+        public Fornecedor(string registro)
         {
-            Cpf = registro.Substring(0, 11);
-            Nome = registro.Substring(11, 50);
-            DataNascimento = DateOnly.ParseExact(registro.Substring(61, 8), "ddMMyyyy"); ;
-            Sexo = registro[69];
-            UltimaCompra = DateOnly.ParseExact(registro.Substring(70, 8), "ddMMyyyy");
-            DataCadastro = DateOnly.ParseExact(registro.Substring(78, 8), "ddMMyyyy"); ;
-            Situacao = registro[86];
+            Cnpj = registro.Substring(0, 14);
+            RazaoSocial = registro.Substring(14, 50);
+            DataAbertura = DateOnly.ParseExact(registro.Substring(64, 8), "ddMMyyyy"); ;
+            UltimaCompra = DateOnly.ParseExact(registro.Substring(72, 8), "ddMMyyyy");
+            DataCadastro = DateOnly.ParseExact(registro.Substring(80, 8), "ddMMyyyy"); ;
+            Situacao = registro[88];
         }
 
         public override string ToString()
         {
-            return Cpf + "\n" +
-                   Nome + "\n" +
-                   DataNascimento + "\n" +
-                   Sexo + "\n" +
+            return Cnpj + "\n" +
+                   RazaoSocial + "\n" +
+                   DataAbertura + "\n" +
                    UltimaCompra + "\n" +
                    DataCadastro + "\n" +
                    Situacao + "\n";
         }
-        
+
         public string FormatarParaArquivo()
         {
             string dadosDoArquivo = String.Empty;
-            
-            dadosDoArquivo += Cpf;
-            dadosDoArquivo += Nome.ToUpper().PadRight(50);
-            dadosDoArquivo += $"{DataNascimento.Day:00}{DataNascimento.Month:00}{DataNascimento.Year}";
-            dadosDoArquivo += Sexo;
+
+            dadosDoArquivo += Cnpj;
+            dadosDoArquivo += RazaoSocial.ToUpper().PadRight(50);
+            dadosDoArquivo += $"{DataAbertura.Day:00}{DataAbertura.Month:00}{DataAbertura.Year}";
             dadosDoArquivo += $"{UltimaCompra.Day:00}{UltimaCompra.Month:00}{UltimaCompra.Year}";
             dadosDoArquivo += $"{DataCadastro.Day:00}{DataCadastro.Month:00}{DataCadastro.Year}";
             dadosDoArquivo += Situacao;
@@ -72,27 +66,26 @@ namespace Projeto.Cadastro.Entidades
         public string GerarStringParaEdicao()
         {
             string situacao = Situacao == 'A' ? "Ativo" : "Inativo";
-            return $"1 - RazaoSocial: {Nome}\n" +
-                   $"2 - Data de Nascimento: {DataNascimento}\n" +
-                   $"3 - Sexo: {Sexo}\n" +
-                   $"4 - Situação: {situacao}\n";
+            return $"1 - Razão Social: {RazaoSocial}\n" +
+                   $"2 - Data de Abertura: {DataAbertura}\n" +
+                   $"2 - Situação {situacao}\n";
         }
 
-        public static bool VerificarCpf(string cpf)
+        public static bool VerificarCnpj(string cnpj)
         {
             // Calcular validade dos dígitos verificadores
-            int digitoVerificador1 = int.Parse(cpf[9].ToString());
-            int digitoVerificador2 = int.Parse(cpf[10].ToString());
+            int digitoVerificador1 = int.Parse(cnpj[9].ToString());
+            int digitoVerificador2 = int.Parse(cnpj[10].ToString());
 
             // Digito 1 
             // Multiplicar os primeiros 9 digitos, da direita pra esquerda por 2++
             int multiplicador = 2, acumulador = 0;
-            for (int i = cpf.Length - 3; i >= 0; i--)
+            for (int i = cnpj.Length - 3; i >= 0; i--)
             {
-                acumulador += int.Parse(cpf[i].ToString()) * multiplicador;
+                acumulador += int.Parse(cnpj[i].ToString()) * multiplicador;
                 multiplicador++;
             }
-            
+
             // Quando o resto da divisão por 11 for menor que 2, dígito tem que ser igual a 0
             int resto = acumulador % 11;
             if (resto < 2 && digitoVerificador1 != 0)
@@ -108,11 +101,11 @@ namespace Projeto.Cadastro.Entidades
 
             // Digito 2
             // Multiplicar os primeiros 9 digitos + o primeiro digito verificador, da direita pra esquerda por 2++
-            multiplicador = 2; 
+            multiplicador = 2;
             acumulador = 0;
-            for (int i = cpf.Length - 2; i >= 0; i--)
+            for (int i = cnpj.Length - 2; i >= 0; i--)
             {
-                acumulador += int.Parse(cpf[i].ToString()) * multiplicador;
+                acumulador += int.Parse(cnpj[i].ToString()) * multiplicador;
                 multiplicador++;
             }
 

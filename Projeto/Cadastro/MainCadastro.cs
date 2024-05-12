@@ -5,16 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ManipuladorFornecedores = Projeto.Cadastro.Manipuladores.ManipuladorFornecedores;
 
 namespace Projeto.Cadastro
 {
     internal class MainCadastro
     {
-        private readonly ManipuladorClientes _manipuladorClientes = new(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoCliente);
-        // ManipuladorProduto
-        // ManipularMPrima
-        // ManipularFornecedor
-
         public void Acesso()
         {
             Console.Write("Selecione uma opção de cadastro:\n" +
@@ -45,6 +41,7 @@ namespace Projeto.Cadastro
         
         private void menuCliente()
         {
+            var manipulador = new ManipuladorClientes(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoCliente);
             bool repetir = true;
             do
             {
@@ -63,19 +60,19 @@ namespace Projeto.Cadastro
                 switch (opcao)
                 {
                     case 1:
-                        _manipuladorClientes.Cadastrar();
+                        manipulador.Cadastrar();
                         break;
                     case 2:
-                        _manipuladorClientes.Editar();
+                        manipulador.Editar();
                         break;
                     case 3:
-                        _manipuladorClientes.ImprimirClientesAtivos();
+                        manipulador.ImprimirClientesAtivos();
                         break;
                     case 4:
-                        _manipuladorClientes.ImprimirClientesInAtivos();
+                        manipulador.ImprimirClientesInativos();
                         break;
                     case 5:
-                        _manipuladorClientes.ImprimirTodosClientes();
+                        manipulador.ImprimirTodosClientes();
                         break;
                     case 0:
                         repetir = false;
@@ -89,9 +86,51 @@ namespace Projeto.Cadastro
             } while (repetir);
         }
 
-        private void menuMPrima()   
+        private void menuFornecedor()
         {
+            var manipulador = new ManipuladorFornecedores(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoFornecedor);
+            bool repetir = true;
+            do
+            {
+                Console.WriteLine("Selecione a ação: :\n" +
+                                  "1 - Cadastrar novo fornecedor\n" +
+                                  "2 - Editar fornecedor\n" +
+                                  "3 - Exibir fornecedores ativos\n" +
+                                  "4 - Exibir fornecedores inativos\n" +
+                                  "5 - Exibir todos registros\n" +
+                                  "0 - Sair\n"
+                );
 
+                Console.Write("Opção: ");
+                int opcao = int.Parse(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 1:
+                        manipulador.Cadastrar();
+                        break;
+                    case 2:
+                        manipulador.Editar();
+                        break;
+                    case 3:
+                        manipulador.ImprimirForncedoresAtivos();
+                        break;
+                    case 4:
+                        manipulador.ImprimirFornecedoreInativos();
+                        break;
+                    case 5:
+                        manipulador.ImprimirTodosForncedores();
+                        break;
+                    case 0:
+                        repetir = false;
+                        break;
+                    default:
+                        Console.WriteLine("Entrada inválida, tente novamente.");
+                        break;
+                }
+                Console.WriteLine("\nPressione qualquer tecla para voltar.");
+                Console.ReadKey();
+            } while (repetir);
         }
 
         private void menuProduto()  
@@ -99,8 +138,7 @@ namespace Projeto.Cadastro
 
         }
 
-        private void menuFornecedor()
-        
+        private void menuMPrima()   
         {
 
         }
