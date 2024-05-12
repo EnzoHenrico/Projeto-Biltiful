@@ -1,5 +1,6 @@
 ﻿using Projeto.Cadastro;
 using Projeto.Cadastro.Manipuladores;
+using Projeto.Compras;
 using Projeto.Vendas;
 using Projeto.Vendas.Manipuladores;
 
@@ -38,7 +39,7 @@ namespace Projeto
                         vendas.menu();
                         break;
                     case 3:
-                        // TODO: MainCompras.Acesso();
+                        MainCompras.Acesso();
                         break;
                     case 4:
                         // TODO: MainProducao.Acesso();

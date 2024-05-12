@@ -6,9 +6,9 @@ namespace Projeto.Compras
     {
         static List<Compra> compras = new List<Compra>();
         static List<ItemCompra> itensLista = new List<ItemCompra>();
-        static string pasta = @"C:\Biltiful\";
-        static string arquivo = "Compra.dat";
-        static string arquivoItem = "ItemCompra.dat";
+        static string pasta = DicionarioStrings.Diretorio;
+        static string arquivo = DicionarioStrings.ArquivoCompra;
+        static string arquivoItem = DicionarioStrings.ArquivoItemCompra;
         static int identificadorCompra = 0;
         static void ChecarExistenciaArquivo()
         {
@@ -58,7 +58,7 @@ namespace Projeto.Compras
             {
                 if (cnpj == linha.Substring(0, 14).Trim())
                 {
-                    DateOnly dataAbertura = DateOnly.Parse(linha.Substring(80, 2).Trim() + "/" + linha.Substring(82, 4).Trim() + "/" + linha.Substring(84, 4).Trim());
+                    DateOnly dataAbertura = DateOnly.Parse(linha.Substring(80, 2).Trim() + "/" + linha.Substring(82, 2).Trim() + "/" + linha.Substring(84, 4).Trim());
                     dataAbertura = dataAbertura.AddMonths(6);
                     if (dataAbertura < dataCompra)
                         Console.WriteLine("Essa empresa foi aberta a menos que 6 meses!!!!");
