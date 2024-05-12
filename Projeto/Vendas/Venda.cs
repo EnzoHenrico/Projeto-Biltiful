@@ -32,14 +32,14 @@ namespace Projeto.Vendas
         {
             try
             {
-                StreamWriter sr = new(@"C:\Biltiful\Venda.dat", true);
+                StreamWriter sw = new(@"C:\Biltiful\Venda.dat", true);
                 int valorTotalEmCentavos = (int)(valorTotal * 100);
                 string linha = $"{this.Id.ToString().PadLeft(5, '0')}" +
                     $"{DateTime.Now.ToString("ddMMyyyy")}" +
                     $"{cpf}" +
                     $"{valorTotalEmCentavos.ToString().PadLeft(7, '0')}"; // Usa o valor total em centavos
-                sr.WriteLine(linha);
-                sr.Close();
+                sw.WriteLine(linha);
+                sw.Close();
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
         }

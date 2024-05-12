@@ -41,9 +41,8 @@ namespace Projeto.Vendas
                     string linha = $"{produto.Id.ToString().PadLeft(5, '0')}" +
                     $"{produto.Produto}" +
                     $"{produto.Quantidade.ToString().PadLeft(3, '0')}" +
-                    $"{produto.ValorUnitario.ToString().Replace(".", "").PadLeft(5, '0')}" +
-                    $"{produto.TotalItem.ToString().Replace(".", "").PadLeft(6, '0')}";
-                    Console.WriteLine("item venda: " + linha);
+                    $"{(Math.Round(produto.ValorUnitario * 100)).ToString().PadLeft(5, '0')}" +
+                    $"{(Math.Round(produto.TotalItem * 100)).ToString().PadLeft(6, '0')}";
                     sw.WriteLine(linha);
                 }
                 sw.Close();

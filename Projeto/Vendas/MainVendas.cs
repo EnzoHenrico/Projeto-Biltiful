@@ -26,12 +26,12 @@ namespace Projeto.Vendas
             int resetaCpf;
             do
             {
+                Console.Clear();
                 Console.Write("Informe o CPF do cliente:");
                 cpf = Console.ReadLine();
-                Console.Clear();
                 Console.WriteLine($"\nConfirma CPF? {cpf}\n" +
-                    $"1 - SIM;\n" +
-                    $"2 - ESCREVER NOVAMENTE\n" +
+                    $"1 - SIM\n" +
+                    $"2 - CORRIGIR\n" +
                     $"0 - VOLTAR");
                 resetaCpf = int.Parse(Console.ReadLine());
                 if (resetaCpf == 0) break;
@@ -46,12 +46,12 @@ namespace Projeto.Vendas
                 string? linha = null;
                 int contador = 0, addProduto = 0, quantidade = 0;
 
-                //MOSTRAR PRODUTOS NA TELA
                 do
                 {
                     Console.Clear();
                     StreamReader sr = new(@"C:\Biltiful\Cosmetico.dat");
                     Console.WriteLine("------------PRODUTOS------------");
+                    //MOSTRAR PRODUTOS NA TELA
                     while ((linha = sr.ReadLine()) != null)
                     {
                         contador++;
@@ -167,9 +167,9 @@ namespace Projeto.Vendas
                     foreach (string venda in Vendas)
                     {
                         string id = venda.Substring(0, 5);
-                        string data = DateTime.ParseExact(venda.Substring(5, 8), "ddMMyyyy", CultureInfo.InvariantCulture).ToString();
+                        string data = DateTime.ParseExact(venda.Substring(5, 8), "ddMMyyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
                         string cpf = venda.Substring(13, 11);
-                        string valorTotal = venda.Substring(24, 7);
+                        double valorTotal = double.Parse(venda.Substring(24, 7)) / 100;
                         string itens = "", linha = "";
 
                         contador++;
@@ -177,7 +177,13 @@ namespace Projeto.Vendas
                         try
                         {
                             List<string>? ItensRelacionados = ManipularArquivos.BuscarLinhas(@"C:\Biltiful\", "ItemVenda.dat", id);
-                            foreach (var item in ItensRelacionados) itens += $"{item.Substring(5, 13)}\n";
+                            foreach (var item in ItensRelacionados)
+                            {
+                                string código = item.Substring(5, 13);
+                                int quantidade = int.Parse(item.Substring(18, 3));
+                                double valorUnitario = double.Parse(item.Substring(21, 5)) / 100;
+                                itens += $"Código: {código} - Quantidade: {quantidade} - Valor unitario: R${valorUnitario}\n - Valor total: R${quantidade * valorUnitario}\n";
+                            }
                         }
                         catch (Exception e)
                         {
@@ -186,7 +192,7 @@ namespace Projeto.Vendas
                         finally
                         {
                             //CRIAR A LINHA DA VENDA COM OS ITENS RELACIONADOS ENCONTRADOS
-                            linha = $"\n{contador} - ID: {id} - Data: {data} - CPF: {cpf} - Valor total: {valorTotal}\n" +
+                            linha = $"\n{contador} - ID: {id} - Data: {data} - CPF: {cpf} - Valor total: R${valorTotal}\n" +
                                 $"Produtos relacionados:\n" +
                                 $"{itens}\n";
                             Console.WriteLine(linha);

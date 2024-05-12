@@ -29,7 +29,8 @@ namespace Projeto.Vendas.Utils
             }
             if (UltimoCliente == null)
             {
-                Console.WriteLine("ERRO: Cliente sem cadastro. Suspendendo operação.");
+                Console.WriteLine("ERRO: Cliente sem cadastro. Suspendendo operação...");
+                Thread.Sleep(3000);
                 return false;
             }
             clientes.Close();
@@ -44,7 +45,8 @@ namespace Projeto.Vendas.Utils
             {
                 if (inadimplente == cpf)
                 {
-                    Console.WriteLine("ERRO: Cliente inadimplente. Suspendendo operação.");
+                    Console.WriteLine("ERRO: Cliente inadimplente. Suspendendo operação...");
+                    Thread.Sleep(3000);
                     return false;
                 }
             }
@@ -57,7 +59,8 @@ namespace Projeto.Vendas.Utils
             if (cliente[86] == 'I')
             {
                 Console.WriteLine(cliente[86]);
-                Console.WriteLine("ERRO: Cliente inativo. Suspendendo operação.");
+                Console.WriteLine("ERRO: Cliente inativo. Suspendendo operação...");
+                Thread.Sleep(3000);
                 return false;
             }
             return VerificarMaioridade(cliente);
@@ -74,7 +77,12 @@ namespace Projeto.Vendas.Utils
             int idade = DateTime.Now.Year - ano;
             if (DateTime.Now.DayOfYear < DataNascimento.DayOfYear) idade--;
 
-            if (idade < 18) return false;
+            if (idade < 18)
+            {
+                Console.WriteLine("ERRO: Cliente menor de idade. Suspendendo operação...");
+                Thread.Sleep(3000);
+                return false;
+            }
             else return true;
         }
     }
