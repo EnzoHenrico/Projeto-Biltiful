@@ -79,15 +79,15 @@ namespace Projeto.Cadastro.Entidades
         public static bool VerificarCpf(string cpf)
         {
             // Calcular validade dos dígitos verificadores
-            int digitoVerificador1 = cpf[9];
-            int digitoVerificador2 = cpf[10];
+            int digitoVerificador1 = int.Parse(cpf[9].ToString());
+            int digitoVerificador2 = int.Parse(cpf[10].ToString());
 
             // Digito 1 
             // Multiplicar os primeiros 9 digitos, da direita pra esquerda por 2++
             int multiplicador = 2, acumulador = 0;
-            for (int i = cpf.Length - 2; i >= 0; i--)
+            for (int i = cpf.Length - 3; i >= 0; i--)
             {
-                acumulador += cpf[i] * multiplicador;
+                acumulador += int.Parse(cpf[i].ToString()) * multiplicador;
                 multiplicador++;
             }
             
@@ -99,7 +99,7 @@ namespace Projeto.Cadastro.Entidades
             }
 
             // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
-            if (digitoVerificador1 != (11 - resto))
+            if (resto >= 2 && digitoVerificador1 != (11 - resto))
             {
                 return false;
             }
@@ -108,9 +108,9 @@ namespace Projeto.Cadastro.Entidades
             // Multiplicar os primeiros 9 digitos + o primeiro digito verificador, da direita pra esquerda por 2++
             multiplicador = 2; 
             acumulador = 0;
-            for (int i = cpf.Length - 1; i >= 0; i--)
+            for (int i = cpf.Length - 2; i >= 0; i--)
             {
-                acumulador += cpf[i] * multiplicador;
+                acumulador += int.Parse(cpf[i].ToString()) * multiplicador;
                 multiplicador++;
             }
 
@@ -122,7 +122,7 @@ namespace Projeto.Cadastro.Entidades
             }
 
             // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
-            if (digitoVerificador2 != (11 - resto))
+            if (resto >= 2 && digitoVerificador2 != (11 - resto))
             {
                 return false;
             }

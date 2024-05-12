@@ -13,11 +13,22 @@ namespace Projeto.Cadastro
         public static Cliente CadastrarCliente()
         {
             Console.WriteLine("Digite os dados para cadastrar um novo cliente: \n");
-            
-            Console.WriteLine("CPF:");
-            string cpf = Console.ReadLine();
+            bool cpfValido;
+            string cpf;
+            do
+            {
+                Console.WriteLine("CPF (Apenas números):");
+                cpf = Console.ReadLine();
+                cpfValido = Cliente.VerificarCpf(cpf);
 
-            Console.WriteLine("Nome:");
+                if (!cpfValido)
+                {
+                    Console.WriteLine("CPF inválido, digite novamente um valor válido.");
+                }
+
+            } while (!cpfValido);
+
+            Console.WriteLine("Nome (Máximo 50 caracteres):");
             string nome = Console.ReadLine();
             
             Console.WriteLine("Data de nascimento (dd/mm/aaaa):");
