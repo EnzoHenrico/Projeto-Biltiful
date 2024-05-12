@@ -11,7 +11,7 @@ namespace Projeto.Producao
         int Id;
         DateOnly DataProducao;
         string Produto;
-        int Quantidade;
+        float Quantidade;
         string Diretorio = @"C:\Biltiful\";
         string ArquivoProdutos = "Cosmetico.dat";
         string ArquivoProducao = "Producao.dat";
@@ -22,14 +22,13 @@ namespace Projeto.Producao
              this.manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
              this.manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
         }
-        public Producao(int id, DateOnly dataproducao, string produto, int quantidade)
+        public Producao(int id, DateOnly dataproducao, string produto, float quantidade)
         {
             this.Id = id;
             this.DataProducao = dataproducao;
             this.Produto = produto;
             this.Quantidade = quantidade;
         }
-
        public  List<Producao> CopiarArquivo()
         {
             List<Producao> producaos = new List<Producao>();
@@ -40,14 +39,13 @@ namespace Projeto.Producao
                 string idCopia = line.Substring(0, 5);
                 string dataCopia = line.Substring(5, 8);
                 string codprodutoCopia = line.Substring(13, 13);
-                string qtditensCopia = line.Substring(26, 5);
+                string qtditensCopia = line.Substring(26, 5).Insert(3,",");
                 string data = dataCopia.Substring(0, 2) + "/" + dataCopia.Substring(2, 2) + "/" + dataCopia.Substring(4, 4);
-                producaos.Add(new Producao(int.Parse(idCopia), DateOnly.Parse(data), codprodutoCopia, int.Parse(qtditensCopia)));
+                producaos.Add(new Producao(int.Parse(idCopia), DateOnly.Parse(data), codprodutoCopia, float.Parse(qtditensCopia)));
                 }
             }
             return producaos;
         }
-        
         public int GetId()
         {
             return this.Id;
@@ -77,46 +75,46 @@ namespace Projeto.Producao
                 Producao ultimaLinha = listaCopiada.Last();
                 return ultimaLinha.Id + 1;
             }
-            //string ultimaLinha = null;
-            //int novoId = 1;
-            //StreamReader sr = new StreamReader(Diretorio + ArquivoProducao);
-            //while (!sr.EndOfStream)
-            //{
-            //    ultimaLinha = sr.ReadLine();
-            //}
-            //if(ultimaLinha != null && ultimaLinha != "99999")
-            //{
-            //    int ultimoId = int.Parse(ultimaLinha.Substring(0, 4));
-
-            //    if (ultimoId < 99999)
-            //    {
-            //        novoId = ultimoId + 1;
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Não é possível gerar mais IDs. Limite de 99999 alcançado.");
-            //    }
-
-            //}
-            //return novoId;
-
         }
         public void LocalizarProducao(ItemProducao IP)
         {
+            int idProducao = 0;
             List<Producao> copia = CopiarArquivo();
-            Console.WriteLine("Digite o ID da produção que deseja localizar");
-            int idProducao = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("Digite o ID da produção que deseja localizar");
+                idProducao = int.Parse(Console.ReadLine());
+
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Tipo digitado invalído!");
+                return;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro: " + e.Message);
+                return;
+            }
+            bool existe = false;
             foreach (var objeto in copia)
             {
                 if (objeto.GetId() == idProducao)
                 {
                     Console.WriteLine(objeto.ToString());
+                    existe = true;
                 }
             }
-            IP.LocalizarItemProducao(idProducao);
+            if (existe == true)
+            {
+                IP.LocalizarItemProducao(idProducao);
+            }
+            else
+            {
+                Console.WriteLine("Produção não localizada na base de dados!");
+            }
 
         }
-
         public void RemoverProducao()
         {
             List<Producao> producaoRemover;
@@ -153,47 +151,34 @@ namespace Projeto.Producao
             foreach (var objeto in producaoLista)
             {
                 string salvarArquivo = "";
-                salvarArquivo = $"{objeto.Id.ToString().PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.Produto.ToString().PadRight(13, ' ')}{objeto.Quantidade.ToString().PadLeft(5, '0')}";
+                salvarArquivo = $"{objeto.Id.ToString().PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.Produto}{objeto.Quantidade.ToString("000.00").Remove(3,1)}";
                 sw.WriteLine(salvarArquivo);
                 
             } sw.Close();
         }
-        public int RetornarQuantidadeProducao()
+        public float RetornarQuantidadeProducao()
         {
-            int quantidadeProduto = 0 ;
+            float quantidadeProduto = 0 ;
             do
             {
                 try
                 {
-                    Console.WriteLine("Informe a quantidade do produto a ser produzido (Máximo de 999 unidades):");
-                    quantidadeProduto = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Digite a quantidade do produto (Maximo de 999,99");
+                    quantidadeProduto = float.Parse(Console.ReadLine());
 
-                    if (quantidadeProduto > 0 && quantidadeProduto < 1000)
+                    if (quantidadeProduto <= 0 || quantidadeProduto > 999.99)
                     {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Quantidade inválida. Por favor, insira um valor entre 0 e 999.");
+                        Console.WriteLine("Quantidade inválida!");
+
                     }
                 }
-                catch (FormatException)
+                catch
                 {
-                    Console.WriteLine("Erro: entrada inválida. Por favor, insira um número inteiro.");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Erro: " + e.Message);
+                    Console.WriteLine("ERRO! Por favor digite um valor válido!");
                 }
 
-                Console.WriteLine();
-                Console.WriteLine("Deseja tentar novamente? (S/N)");
-                string resposta = Console.ReadLine().ToUpper();
-                if (resposta[0] != 'S')
-                {
-                    break;
-                }
-            } while (true);
+            
+            } while (quantidadeProduto <= 0 || quantidadeProduto > 999.99);
             return quantidadeProduto;
         }
         public void CriarProducao(ItemProducao IP)
@@ -234,6 +219,66 @@ namespace Projeto.Producao
             {
                 Console.WriteLine("Não foi possivel registrar a produção");
             }
+        }
+
+        public void MenuNavegacao()
+        {
+            Console.WriteLine("==============================");
+            Console.WriteLine(">>>>> MENU NAVEGACAO <<<<<");
+            Console.WriteLine("[1] Navegar para o primeiro");
+            Console.WriteLine("[2] Navegar para o ultimo");
+            Console.WriteLine("[3] Navegar para o próximo");
+            Console.WriteLine("[4] Navegar para o anterior");
+            Console.WriteLine("[5] Sair");
+            Console.WriteLine("==============================");
+
+
+        }
+        public void NavegarProducao()
+        {
+            int indiceAtual = 0;
+            int opcao = 0;
+            List<Producao> producaos = CopiarArquivo();
+            do
+            {
+                MenuNavegacao();
+                try
+                {
+
+                Console.WriteLine("Digite a opção:");
+                opcao = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+
+                    Console.WriteLine("Erro! Valor digitado incorreto.");
+                    return;
+                }
+                switch (opcao)
+                {
+                    case 1:
+                       
+                        Console.WriteLine(producaos.First().ToString());
+                        break;
+                    case 2:
+                        Console.WriteLine(producaos.Last().ToString()) ;
+                        break;
+                    case 3:
+
+                        indiceAtual = (indiceAtual + 1) % producaos.Count;
+                        Console.WriteLine(producaos[indiceAtual].ToString());
+                        break;
+                    case 4:
+                        indiceAtual = (indiceAtual - 1) % producaos.Count;
+                        Console.WriteLine(producaos[indiceAtual].ToString());
+                        break;
+                     
+                }
+                Console.WriteLine("Pressione enter para continuar");
+                Console.ReadLine();
+                Console.Clear();
+
+            } while (opcao != 5);
         }
         public override string? ToString()
         {

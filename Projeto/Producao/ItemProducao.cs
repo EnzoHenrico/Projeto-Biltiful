@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Projeto.Producao
             this.ManipularArquivoItemProducao = new EditorArquivo(Diretorio, ArquivoItemProducao);
         }
 
-        public ItemProducao(string id, DateOnly dataProducao, string materiaPrima,double quantidadeMateriaPrima)
+        public ItemProducao(string id, DateOnly dataProducao, string materiaPrima, double quantidadeMateriaPrima)
         {
             this.Id = id;
             this.DataProducao = dataProducao;
@@ -35,9 +36,9 @@ namespace Projeto.Producao
         public string VerificarMateriaExiste(int codigoMP)
         {
             string nomeMateriaPrima = "";
-            foreach(var line in ManipularArquivoMateria.Ler())
+            foreach (var line in ManipularArquivoMateria.Ler())
             {
-                if (line.Substring(2, 4) == codigoMP.ToString().PadLeft(4,'0'))
+                if (line.Substring(2, 4) == codigoMP.ToString().PadLeft(4, '0'))
                 {
                     nomeMateriaPrima = line.Substring(6, 20);
                     break;
@@ -86,25 +87,25 @@ namespace Projeto.Producao
             bool status = false;
             foreach (var linha in ManipularArquivoMateria.Ler())
             {
-                if (linha.Substring(6,20) == nome && linha.Substring(42,1) == "A")
+                if (linha.Substring(6, 20) == nome && linha.Substring(42, 1) == "A")
                 {
                     status = true;
                 }
             }
             return status;
         }
-
         public ItemProducao[] PedirMateriaPrima(string idProducao)
         {
-            int numeroMateriaPrima = 0 ;
-            
+            float quantidade = 0;
+            int numeroMateriaPrima = 0;
+
             do
             {
                 try
                 {
                     Console.WriteLine("Quantas matérias primas são necessárias?");
                     numeroMateriaPrima = int.Parse(Console.ReadLine());
-                    if(numeroMateriaPrima < 2)
+                    if (numeroMateriaPrima < 2)
                     {
                         Console.WriteLine("O número de materias primas deve ser pelo menos 2. Tente novamente");
                     }
@@ -117,24 +118,39 @@ namespace Projeto.Producao
             } while (numeroMateriaPrima < 2);
             ItemProducao[] backup = new ItemProducao[numeroMateriaPrima];
             int contador = 0;
-            while(contador <  numeroMateriaPrima) 
+            while (contador < numeroMateriaPrima)
             {
-                int id = 0 ;
+                int id = 0;
                 Console.WriteLine("Digite o ID da materia prima");
                 try
                 {
                     id = int.Parse(Console.ReadLine());
-                } catch
+                }
+                catch
                 {
-                    Console.WriteLine("ERRO! Por favor digite um valor válido para ID");
+                    Console.WriteLine("ERRO! Por favor digite um valor válido para ID"!);
                 }
                 if (VerificarMateriaExiste(id) != "")
                 {
                     if (VerificarMateriaAtiva(VerificarMateriaExiste(id)))
                     {
                         string nome = getNomeMP(id);
-                        Console.WriteLine($"Digite a quantidade de {nome} que usara.  ");
-                        double quantidade = float.Parse(Console.ReadLine());
+                        do
+                        {
+                            try
+                            {
+                                Console.WriteLine($"Digite a quantidade de {nome} que usara.  ");
+                                quantidade = float.Parse(Console.ReadLine());
+                                if (quantidade <= 0 || quantidade > 999.99)
+                                {
+                                    Console.WriteLine("Valor digitado fora do escopo de limite entre 0 e 999,99\nPor favor digite novamente!");
+                                }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("ERRO! Por favor digite uma quantidade válida!");
+                            }
+                        } while (quantidade <= 0 || quantidade > 999.99);
                         ItemProducao item = new(idProducao, DateOnly.FromDateTime(DateTime.Now), "MP" + id.ToString().PadLeft(4, '0'), quantidade);
                         backup[contador] = item;
                         contador++;
@@ -156,20 +172,23 @@ namespace Projeto.Producao
             string nome = "";
             foreach (var linha in ManipularArquivoMateria.Ler())
             {
-                if(linha.Substring(2,4) == idProducao.ToString().PadLeft(4,'0'))
+                if (linha.Substring(2, 4) == idProducao.ToString().PadLeft(4, '0'))
                 {
-                    nome =  linha.Substring(6, 20);
+                    nome = linha.Substring(6, 20);
                 }
             }
             return nome;
         }
         public void LocalizarItemProducao(int idProducao)
         {
-            foreach(var linha in ManipularArquivoItemProducao.Ler())
+            List<ItemProducao> copia = CopiarArquivoItemProducao();
+            foreach (var linha in ManipularArquivoItemProducao.Ler())
             {
-                if (linha.Substring(0, 5) == idProducao.ToString().PadLeft(5,'0'))
+                if (linha.Substring(0, 5) == idProducao.ToString().PadLeft(5, '0'))
                 {
-                    Console.WriteLine("Materia prima utilizada : " + linha.Substring();
+                    Console.WriteLine("Materia prima utilizada: " + linha.Substring(13, 6));
+                    Console.WriteLine("Quantidade utilizada: " + linha.Substring(17, 5).Insert(3, ","));
+
                 }
 
             }
@@ -184,32 +203,32 @@ namespace Projeto.Producao
                 arquivoCopiado.Add(objetos[i]);
             }
             return arquivoCopiado;
-            
+
         }
 
         public void RemoverItemProducao(int idProducao)
         {
             List<ItemProducao> itemRemover;
             itemRemover = CopiarArquivoItemProducao();
-           
+
             bool existe = false;
-            foreach(ItemProducao item in itemRemover)
+            foreach (ItemProducao item in itemRemover)
             {
-                if (item.Id == idProducao.ToString().PadLeft(5, '0'));
+                if (item.Id == idProducao.ToString().PadLeft(5, '0')) ;
                 {
                     existe = true;
                 }
             }
             if (existe)
             {
-                itemRemover.RemoveAll(item => item.Id == idProducao.ToString().PadLeft(5,'0'));
+                itemRemover.RemoveAll(item => item.Id == idProducao.ToString().PadLeft(5, '0'));
                 FormatarProArquivo(itemRemover);
                 Console.WriteLine("Removido com sucesso");
             }
             else
             {
                 Console.WriteLine("O id fornecido não existe no arquivo");
-            }    
+            }
         }
 
         public override string? ToString()
