@@ -32,8 +32,16 @@ namespace Projeto.Producao
             do
             {
                 Menu();
+                try
+                {
                 Console.WriteLine("Escolha uma opção");
                 opcao = int.Parse(Console.ReadLine());
+
+                }
+                catch
+                {
+                    Console.WriteLine("Erro! Valor inválido.");
+                }
                 switch(opcao)
                 {
                     case 1:

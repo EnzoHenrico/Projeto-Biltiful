@@ -187,7 +187,7 @@ namespace Projeto.Producao
                 if (linha.Substring(0, 5) == idProducao.ToString().PadLeft(5, '0'))
                 {
                     Console.WriteLine("Materia prima utilizada: " + linha.Substring(13, 6));
-                    Console.WriteLine("Quantidade utilizada: " + linha.Substring(17, 5).Insert(3, ","));
+                    Console.WriteLine("Quantidade utilizada: " + linha.Substring(19, 5).Insert(3, ","));
 
                 }
 
@@ -205,7 +205,6 @@ namespace Projeto.Producao
             return arquivoCopiado;
 
         }
-
         public void RemoverItemProducao(int idProducao)
         {
             List<ItemProducao> itemRemover;
@@ -230,7 +229,6 @@ namespace Projeto.Producao
                 Console.WriteLine("O id fornecido não existe no arquivo");
             }
         }
-
         public override string? ToString()
         {
             return "\nMateria Prima Utilizada: " + this.MateriaPrima + "\nQuantidade Utilizada: " + this.QuantidadeMateriaPrima;

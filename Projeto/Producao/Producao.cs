@@ -117,10 +117,19 @@ namespace Projeto.Producao
         }
         public void RemoverProducao()
         {
+            int idProducao = 0;
             List<Producao> producaoRemover;
             producaoRemover = CopiarArquivo();
-            Console.WriteLine("Digite o Id da produção que deseja remover: ");
-            int idProducao = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("Digite o Id da produção que deseja remover: ");
+                idProducao = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Erro! Valor inválido.");
+                return;
+            }
             bool existe = false;
             foreach (Producao item in producaoRemover)
             {
