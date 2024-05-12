@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto.Vendas
+namespace Projeto.Vendas.Manipuladores
 {
-    public class ManipularArquivos
+    internal class ManipularArquivos
     {
-        public void VerificarArquivo(string path, string file)
+        static public void VerificarArquivo(string path, string file)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Projeto.Vendas
             {
                 if (!File.Exists(path + file))
                 {
-                    File.Create(path + file);
+                    using (File.Create(path + file)) ;
                 }
             }
             catch (Exception e)

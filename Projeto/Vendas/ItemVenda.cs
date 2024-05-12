@@ -22,12 +22,32 @@ namespace Projeto.Vendas
             Produto = produto;
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
-            TotalItem = totalItem;
+            TotalItem = Math.Round(totalItem, 2);
 
             Console.WriteLine($"Produto {Produto} adicionado com sucesso!\n" +
                 $"Quantidade: {Quantidade}\n" +
-                $"Valor unitário: {ValorUnitario}\n" +
-                $"Valor total: {TotalItem}");
+                $"Valor unitário: R${ValorUnitario}\n" +
+                $"Valor total: R${TotalItem}");
+        }
+
+        public void CadastrarItemVenda(List<ItemVenda> carrinho)
+        {
+            try
+            {
+                StreamWriter sw = new(@"C:\Biltiful\ItemVenda.dat");
+                foreach (var produto in carrinho)
+                {
+                    string linha = $"{produto.Id.ToString().PadLeft(5, '0')}" +
+                    $"{produto.Produto}" +
+                    $"{produto.Quantidade.ToString().PadLeft(3, '0')}" +
+                    $"{produto.ValorUnitario.ToString().Replace(".", "").PadLeft(5, '0')}" +
+                    $"{produto.TotalItem.ToString().Replace(".", "").PadLeft(6, '0')}";
+                    Console.WriteLine("item venda: " + linha);
+                    sw.WriteLine(linha);
+                }
+                sw.Close();
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
     }
 }

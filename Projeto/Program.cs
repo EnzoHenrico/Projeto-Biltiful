@@ -1,4 +1,6 @@
 ﻿using Projeto.Cadastro;
+using Projeto.Vendas;
+using Projeto.Vendas.Manipuladores;
 
 namespace Projeto
 {
@@ -6,6 +8,14 @@ namespace Projeto
     {
         static void Main(string[] args)
         {
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Clientes.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Cosmetico.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Fornecedor.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "ItemVenda.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Materia.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Risco.dat");
+            ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Venda.dat");
+
             Console.WriteLine("Biutiful Cosméticos\n");
             
             Console.WriteLine("Qual módulo deseja acessar?");
@@ -21,7 +31,7 @@ namespace Projeto
                     // TODO: MainCadastro.Acesso();
                     break;
                 case "2":
-                    // TODO: MainVendas.Acesso();
+                    new MainVendas().menu();
                     break;
                 case "3":
                     // TODO: MainCompras.Acesso();

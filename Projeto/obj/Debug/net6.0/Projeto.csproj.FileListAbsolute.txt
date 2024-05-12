@@ -1,0 +1,15 @@
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\bin\Debug\net6.0\Projeto.exe
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\bin\Debug\net6.0\Projeto.deps.json
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\bin\Debug\net6.0\Projeto.runtimeconfig.json
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\bin\Debug\net6.0\Projeto.dll
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\bin\Debug\net6.0\Projeto.pdb
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfoInputs.cache
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.AssemblyInfo.cs
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.csproj.CoreCompileInputs.cache
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.sourcelink.json
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.dll
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\refint\Projeto.dll
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.pdb
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\Projeto.genruntimeconfig.cache
+C:\Users\Gustavo Vono\Documents\TAREFAS\week4\BILTIFUL\Projeto\obj\Debug\net6.0\ref\Projeto.dll

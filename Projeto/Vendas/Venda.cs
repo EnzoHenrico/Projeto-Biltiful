@@ -11,22 +11,14 @@ namespace Projeto.Vendas
     {
         public int Id { get; private set; }
         public DateOnly DataVenda { get; set; }
-        public string Cliente {get; set;}
-        public float ValorTotal {get; set;}
+        public string Cliente { get; set; }
+        public float ValorTotal { get; set; }
 
         public Venda() { Id = NovoId(); }
 
-        public Venda(DateOnly dataVenda, string cliente, float valorTotal)
-        {
-            Id = NovoId();
-            DataVenda = dataVenda;
-            Cliente = cliente;
-            ValorTotal = valorTotal;
-        }
-
         private int NovoId()
         {
-            StreamReader sr = new (@"C:\Biltiful\Venda.dat");
+            StreamReader sr = new(@"C:\Biltiful\Venda.dat");
             int UltimoId = 0;
             string linha;
             while ((linha = sr.ReadLine()) != null) UltimoId = int.Parse(linha.Take(5).ToArray());
@@ -34,19 +26,20 @@ namespace Projeto.Vendas
             return UltimoId++;
         }
 
-        public void CadastrarVenda(string cpf)
+        public void CadastrarVenda(string cpf, double valorTotal)
         {
-            if (Validacoes.VerificarCpf(cpf))
+            try
             {
-                //CRIAR LINHA DE VENDA AQUI!!!!
-
-                //ManipularArquivos.InserirLinha(@"C:\BILTIFUL\", "Venda.dat", );
+                StreamWriter sr = new(@"C:\Biltiful\Venda.dat");
+                string linha = $"{this.Id.ToString().PadLeft(5, '0')}" +
+                    $"{DateTime.Now.ToString("ddMMyyyy")}" +
+                    $"{cpf}" +
+                    $"{valorTotal.ToString().Replace(".", "").PadLeft(7, '0')}";
+                Console.WriteLine("venda: " + linha);
+                sr.WriteLine(linha);
+                sr.Close();
             }
-        }
-
-        public void ImprimirVenda(Venda v)
-        {
-
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
     }
 }

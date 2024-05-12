@@ -20,7 +20,8 @@ namespace Projeto.Vendas.Utils
             string cliente;
             while ((cliente = clientes.ReadLine()) != null)
             {
-                if (cliente.Contains(cpf))
+                string cpfCliente = cliente.Substring(0, 11);
+                if (cpfCliente == cpf)
                 {
                     UltimoCliente = cliente;
                     break;
@@ -53,8 +54,9 @@ namespace Projeto.Vendas.Utils
 
         static bool VerificarSituacao(string cliente)
         {
-            if (cliente[87] == 'I')
+            if (cliente[86] == 'I')
             {
+                Console.WriteLine(cliente[86]);
                 Console.WriteLine("ERRO: Cliente inativo. Suspendendo operação.");
                 return false;
             }
@@ -63,9 +65,10 @@ namespace Projeto.Vendas.Utils
 
         static bool VerificarMaioridade(string cliente)
         {
-            int dia = int.Parse(cliente.Substring(62, 2));
-            int mes = int.Parse(cliente.Substring(64, 2));
-            int ano = int.Parse(cliente.Substring(68, 4));
+            Console.WriteLine(cliente);
+            int dia = int.Parse(cliente.Substring(61, 2));
+            int mes = int.Parse(cliente.Substring(63, 2));
+            int ano = int.Parse(cliente.Substring(65, 4));
             DateOnly DataNascimento = new DateOnly(ano, mes, dia);
 
             int idade = DateTime.Now.Year - ano;
