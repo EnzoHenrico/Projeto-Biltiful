@@ -194,7 +194,7 @@ namespace Projeto.Cadastro
 
         private void menuMPrima()
         {
-            var manipulador = new ManipuladorMPrima(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoMPrima);
+            var manipulador = new ManipuladorMPrima(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoMateria);
             bool repetir = true;
             do
             {
@@ -239,8 +239,8 @@ namespace Projeto.Cadastro
 
         private void menuInadimplentes()
         {
-            var manipuladorBloqueados = new ManipuladorBloqueados(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoBloqueados);
-            var manipuladorRiscos = new ManipuladorRiscos(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoRiscos);
+            var manipuladorBloqueados = new ManipuladorBloqueados(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoBloqueado);
+            var manipuladorRiscos = new ManipuladorRiscos(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoRisco);
 
             bool repetir = true;
             do

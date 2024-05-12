@@ -35,7 +35,7 @@ namespace Projeto.Vendas
         {
             try
             {
-                StreamWriter sw = new(@"C:\Biltiful\ItemVenda.dat", true);
+                StreamWriter sw = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoVenda, true);
                 foreach (var produto in carrinho)
                 {
                     string linha = $"{produto.Id.ToString().PadLeft(5, '0')}" +

@@ -49,7 +49,7 @@ namespace Projeto.Vendas
                 do
                 {
                     Console.Clear();
-                    StreamReader sr = new(@"C:\Biltiful\Cosmetico.dat");
+                    StreamReader sr = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoProduto);
                     Console.WriteLine("------------PRODUTOS------------");
                     //MOSTRAR PRODUTOS NA TELA
                     while ((linha = sr.ReadLine()) != null)
@@ -79,7 +79,7 @@ namespace Projeto.Vendas
                     sr.Close();
                 } while (quantidade > 999);
 
-                StreamReader sr1 = new(@"C:\Biltiful\Cosmetico.dat");
+                StreamReader sr1 = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoProduto);
                 string? produtoSelecionado = null;
                 for (int i = 0; i < addProduto; i++) produtoSelecionado = sr1.ReadLine();
                 sr1.Close();
@@ -158,7 +158,7 @@ namespace Projeto.Vendas
                     "Pode ser CPF do cliente, ID da venda ou a data da venda sem barras.");
                 string texto = Console.ReadLine();
 
-                List<string>? Vendas = ManipularArquivos.BuscarLinhas(@"C:\Biltiful\", "Venda.dat", texto);
+                List<string>? Vendas = ManipuladorArquivosVenda.BuscarLinhas(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, texto);
 
                 if (Vendas != null)
                 {
@@ -176,7 +176,7 @@ namespace Projeto.Vendas
                         //BUSCAR ITEMVENDA RELACIONADO A LINHA ESPECIFICA
                         try
                         {
-                            List<string>? ItensRelacionados = ManipularArquivos.BuscarLinhas(@"C:\Biltiful\", "ItemVenda.dat", id);
+                            List<string>? ItensRelacionados = ManipuladorArquivosVenda.BuscarLinhas(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, id);
                             foreach (var item in ItensRelacionados)
                             {
                                 string código = item.Substring(5, 13);
@@ -215,7 +215,7 @@ namespace Projeto.Vendas
         {
             Console.Write("Informe o ID da venda que deseja excluir:");
             string id = Console.ReadLine().PadLeft(5, '0');
-            ManipularArquivos.ExcluirVendaPorId(@"C:\Biltiful\", "Venda.dat", "ItemVenda.dat", id);
+            ManipuladorArquivosVenda.ExcluirVendaPorId(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, "ItemVenda.dat", id);
         }
 
         public void menu()

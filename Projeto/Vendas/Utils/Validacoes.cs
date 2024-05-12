@@ -10,7 +10,7 @@ namespace Projeto.Vendas.Utils
     {
         public static bool VerificarCpf(string cpf)
         {
-            StreamReader clientes = new(@"C:\BILTIFUL\Clientes.dat");
+            StreamReader clientes = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoCliente);
             return VerificarCadastro(clientes, cpf);
         }
 
@@ -39,7 +39,7 @@ namespace Projeto.Vendas.Utils
 
         static bool VerificarInadimplente(string cliente, string cpf)
         {
-            StreamReader inadimplentes = new(@"C:\BILTIFUL\Risco.dat");
+            StreamReader inadimplentes = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoRisco);
             string inadimplente;
             while ((inadimplente = inadimplentes.ReadLine()) != null)
             {

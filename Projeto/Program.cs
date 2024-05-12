@@ -1,6 +1,7 @@
 ﻿using Projeto.Cadastro;
 using Projeto.Cadastro.Manipuladores;
 using Projeto.Vendas;
+using Projeto.Vendas.Manipuladores;
 
 namespace Projeto
 {
@@ -18,7 +19,7 @@ namespace Projeto
             do
             {
                 Console.Clear();
-                Console.WriteLine("Biltiful Cosméticos\n");
+                Console.WriteLine("*** Biltiful Cosméticos ***\n");
                 Console.WriteLine("Qual módulo deseja acessar?\n");
                 Console.WriteLine("1 - Cadastro");
                 Console.WriteLine("2 - Vendas");

@@ -8,40 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\enzo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
-=======
-    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\": {}
->>>>>>> vendas-merge
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+      "projectPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
       "packagesPath": "C:\\Users\\enzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\enzo\\Source\\Repos\\Projeto-Biltiful\\Projeto\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
-      "projectName": "Projeto",
-      "projectPath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\Gustavo Vono\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\obj\\",
->>>>>>> vendas-merge
+      "outputPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
         "C:\\Users\\enzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-=======
-        "C:\\Users\\Gustavo Vono\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> vendas-merge
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

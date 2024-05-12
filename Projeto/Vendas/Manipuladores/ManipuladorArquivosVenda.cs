@@ -6,39 +6,10 @@ using System.Threading.Tasks;
 
 namespace Projeto.Vendas.Manipuladores
 {
-    internal class ManipularArquivos
+    internal class ManipuladorArquivosVenda
     {
-        static public void VerificarArquivo(string path, string file)
-        {
-            try
-            {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            try
-            {
-                if (!File.Exists(path + file))
-                {
-                    using (File.Create(path + file)) ;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
         static public void ImprimirLinhas(string path, string file)
         {
-            VerificarArquivo(path, file);
-
             try
             {
                 StreamReader sr = new StreamReader(path + file);
@@ -58,8 +29,6 @@ namespace Projeto.Vendas.Manipuladores
 
         static public List<string>? BuscarLinhas(string path, string file, string texto)
         {
-            VerificarArquivo(path, file);
-
             StreamReader sr = new (path + file);
             string linha;
             List<string> linhasEncontradas = new ();
@@ -79,7 +48,6 @@ namespace Projeto.Vendas.Manipuladores
 
         static public void InserirLinha(string path, string file, string texto)
         {
-            VerificarArquivo(path, file);
             StreamWriter sr = new StreamWriter(path + file);
             try
             {
@@ -94,9 +62,6 @@ namespace Projeto.Vendas.Manipuladores
 
         static public void ExcluirVendaPorId(string path, string fileVenda, string fileItemVenda, string idVenda)
         {
-            VerificarArquivo(path, fileVenda);
-            VerificarArquivo(path, fileItemVenda);
-
             string linha;
             string linhaExcluida = null;
             List<string> linhasRestantesVenda = new List<string>();

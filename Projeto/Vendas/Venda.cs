@@ -19,7 +19,7 @@ namespace Projeto.Vendas
 
         private int NovoId()
         {
-            StreamReader sr = new(@"C:\Biltiful\Venda.dat");
+            StreamReader sr = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoVenda);
             int UltimoId = 0;
             string linha;
             while ((linha = sr.ReadLine()) != null) UltimoId = int.Parse(linha.Take(5).ToArray());
@@ -32,7 +32,7 @@ namespace Projeto.Vendas
         {
             try
             {
-                StreamWriter sw = new(@"C:\Biltiful\Venda.dat", true);
+                StreamWriter sw = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoVenda, true);
                 int valorTotalEmCentavos = (int)(valorTotal * 100);
                 string linha = $"{this.Id.ToString().PadLeft(5, '0')}" +
                     $"{DateTime.Now.ToString("ddMMyyyy")}" +
