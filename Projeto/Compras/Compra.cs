@@ -15,11 +15,10 @@ namespace Projeto.Compras
         int Id;
         DateOnly DataCompra;
         string Fornecedor;
-        int ValorTotal;
+        int ValorTotal; 
 
         public Compra()
         { }
-
         public Compra(int id, DateOnly dataCompra, string fornecedor, int valorTotal)
         {
             Id = id;
@@ -28,7 +27,29 @@ namespace Projeto.Compras
             ValorTotal = valorTotal;
         }
 
-        
-
+        public int PegarId()
+        {
+            return Id;
+        }
+        public DateOnly MudarData()
+        {
+            return DataCompra;
+        }
+        public string MudarFornecedor()
+        {
+            return Fornecedor;
+        }
+        public int MudarValorTotal()
+        {
+            return ValorTotal;
+        }
+        public override string ToString()
+        {
+            return "Id - " + Id + "\nData da Compra - " + DataCompra + "\nFornecedor - " + Fornecedor + "\nValor Total - " + ValorTotal;
+        }
+        public string Formatar()
+        {
+            return Id.ToString("D5") + DataCompra.ToString("ddMMyyyy") + Fornecedor + ValorTotal.ToString("D7");
+        }
     }
 }

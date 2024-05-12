@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projeto.Compras
+﻿namespace Projeto.Compras
 {
     internal class ItemCompra
     {
         int Id;
         DateOnly DataCompra;
-        int MateriaPrima;
+        string MateriaPrima;
         int Quantidade;
         int ValorUnitario;
         int TotalItem;
@@ -18,8 +12,7 @@ namespace Projeto.Compras
         public ItemCompra()
         {
         }
-
-        public ItemCompra(int id, DateOnly dataCompra, int materiaPrima, int quantidade, int valorUnitario, int totalItem)
+        public ItemCompra(int id, DateOnly dataCompra, string materiaPrima, int quantidade, int valorUnitario, int totalItem)
         {
             Id = id;
             DataCompra = dataCompra;
@@ -28,9 +21,21 @@ namespace Projeto.Compras
             ValorUnitario = valorUnitario;
             TotalItem = totalItem;
         }
+        public int PegarId()
+        {
+            return Id;
+        }
         public int PegarTotalItem()
         {
             return TotalItem;
+        }
+        public override string ToString()
+        {
+            return "Materia Prima - " + MateriaPrima + "\nQuantidade - " + Quantidade + "\nValor Unitário - " + ValorUnitario + "\nValor total do Item - " + TotalItem;
+        }
+        public string Formatar()
+        {
+            return Id.ToString("D5") + DataCompra.ToString("ddMMyyyy") + MateriaPrima + Quantidade.ToString("D5") + ValorUnitario.ToString("D5") + TotalItem.ToString("D6");
         }
     }
 }
