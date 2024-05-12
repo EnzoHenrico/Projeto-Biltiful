@@ -35,7 +35,7 @@ namespace Projeto.Vendas.Manipuladores
             }
         }
 
-        public void ImprimirLinhas(string path, string file)
+        static public void ImprimirLinhas(string path, string file)
         {
             VerificarArquivo(path, file);
 
@@ -56,29 +56,28 @@ namespace Projeto.Vendas.Manipuladores
             }
         }
 
-        public string? BuscarLinha(string path, string file, string texto)
+        static public List<string>? BuscarLinhas(string path, string file, string texto)
         {
-
             VerificarArquivo(path, file);
 
-            StreamReader sr = new StreamReader(path + file);
+            StreamReader sr = new (path + file);
             string linha;
+            List<string> linhasEncontradas = new ();
 
+            while ((linha = sr.ReadLine()) != null)
             {
-                while ((linha = sr.ReadLine()) != null)
+                if (linha.Contains(texto))
                 {
-                    if (linha.Contains(texto))
-                    {
-                        return linha;
-                    }
+                    linhasEncontradas.Add(linha);
                 }
             }
 
             sr.Close();
-            return null;
+
+            return linhasEncontradas.Count > 0 ? linhasEncontradas : null;
         }
 
-        public void InserirLinha(string path, string file, string texto)
+        static public void InserirLinha(string path, string file, string texto)
         {
             VerificarArquivo(path, file);
             StreamWriter sr = new StreamWriter(path + file);
@@ -91,6 +90,65 @@ namespace Projeto.Vendas.Manipuladores
                 Console.WriteLine("ERRO: " + e.Message);
             }
             sr.Close();
+        }
+
+        static public void ExcluirVendaPorId(string path, string fileVenda, string fileItemVenda, string idVenda)
+        {
+            VerificarArquivo(path, fileVenda);
+            VerificarArquivo(path, fileItemVenda);
+
+            string linha;
+            string linhaExcluida = null;
+            List<string> linhasRestantesVenda = new List<string>();
+            List<string> linhasRestantesItemVenda = new List<string>();
+            int contador = 0;
+
+            StreamReader srVenda = new StreamReader(path + fileVenda);
+            while ((linha = srVenda.ReadLine()) != null)
+            {
+                if (linha.StartsWith(idVenda))
+                {
+                    linhaExcluida = linha;
+                }
+                else
+                {
+                    linhasRestantesVenda.Add(linha);
+                }
+            }
+            srVenda.Close();
+
+            StreamReader srItemVenda = new StreamReader(path + fileItemVenda);
+            while ((linha = srItemVenda.ReadLine()) != null)
+            {
+                if (linha.StartsWith(idVenda))
+                {
+                    contador++;
+                }
+                else
+                {
+                    linhasRestantesItemVenda.Add(linha);
+                }
+            }
+            srItemVenda.Close();
+
+            StreamWriter swVenda = new StreamWriter(path + fileVenda);
+            foreach (string l in linhasRestantesVenda)
+            {
+                swVenda.WriteLine(l);
+            }
+            swVenda.Close();
+
+            StreamWriter swItemVenda = new StreamWriter(path + fileItemVenda);
+            foreach (string l in linhasRestantesItemVenda)
+            {
+                swItemVenda.WriteLine(l);
+            }
+            swItemVenda.Close();
+
+            Console.WriteLine($"Linha excluida:\n" +
+                $"{linhaExcluida}\n" +
+                $"Quantidade de itens removidos no arquivo ItemVenda.dat: {contador}");
+            Thread.Sleep(5000);
         }
     }
 }

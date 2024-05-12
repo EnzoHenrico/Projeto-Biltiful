@@ -17,7 +17,7 @@ namespace Projeto
             ManipularArquivos.VerificarArquivo(@"C:\Biltiful\", "Venda.dat");
 
             Console.WriteLine("Biutiful Cosméticos\n");
-            
+
             Console.WriteLine("Qual módulo deseja acessar?");
             Console.WriteLine("1 - Cadastro\n");
             Console.WriteLine("2 - Vendas\n");
@@ -31,7 +31,15 @@ namespace Projeto
                     // TODO: MainCadastro.Acesso();
                     break;
                 case "2":
-                    new MainVendas().menu();
+                    int reiniciar = 0;
+                    do
+                    {
+                        new MainVendas().menu();
+                        Console.Clear();
+                        Console.WriteLine("1 - Continuar no modulo de venda;\n" +
+                            "0 - Terminar modulo de venda.");
+                        reiniciar = int.Parse(Console.ReadLine());
+                    } while (reiniciar != 0);
                     break;
                 case "3":
                     // TODO: MainCompras.Acesso();
