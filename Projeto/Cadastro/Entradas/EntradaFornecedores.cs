@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto.Cadastro
+namespace Projeto.Cadastro.Entradas
 {
     internal class EntradaFornecedores
     {
@@ -40,7 +40,7 @@ namespace Projeto.Cadastro
             int ano = int.Parse(abetura.Substring(4, 4));
 
             DateOnly dataAbertura = new DateOnly(ano, mes, dia);
-            
+
             return new(cnpj, razaoSocial, dataAbertura);
         }
 

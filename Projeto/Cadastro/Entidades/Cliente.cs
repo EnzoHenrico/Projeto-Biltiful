@@ -45,15 +45,10 @@ namespace Projeto.Cadastro.Entidades
 
         public override string ToString()
         {
-            return Cpf + "\n" +
-                   Nome + "\n" +
-                   DataNascimento + "\n" +
-                   Sexo + "\n" +
-                   UltimaCompra + "\n" +
-                   DataCadastro + "\n" +
-                   Situacao + "\n";
+            return $"| {Cpf} / {Nome.TrimEnd()} -> Nascimento: {DataNascimento} - Sexo: {Sexo} - Última Compra: {UltimaCompra} - Cadastro: {DataCadastro} - Situacao: {Situacao} ";
+
         }
-        
+
         public string FormatarParaArquivo()
         {
             string dadosDoArquivo = String.Empty;

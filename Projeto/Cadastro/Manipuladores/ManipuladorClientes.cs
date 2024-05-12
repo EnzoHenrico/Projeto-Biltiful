@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projeto.Cadastro.Entidades;
+using Projeto.Cadastro.Entradas;
 
 namespace Projeto.Cadastro.Manipuladores
 {
@@ -105,6 +106,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há clientes cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var cliente in _listaClientes)
             {
                 Console.WriteLine(cliente + "\n");
@@ -118,6 +121,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há clientes cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var cliente in _listaClientes)
             {
                 if (cliente.Situacao == 'A')
@@ -134,6 +139,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há clientes cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var cliente in _listaClientes)
             {
                 if (cliente.Situacao == 'I')

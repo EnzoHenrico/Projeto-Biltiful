@@ -1,4 +1,5 @@
 ﻿using Projeto.Cadastro.Entidades;
+using Projeto.Cadastro.Entradas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há forncedores cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var forncedor in _listaFornecedores)
             {
                 Console.WriteLine(forncedor + "\n");
@@ -118,6 +121,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há forncedores ativos cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var fornecedores in _listaFornecedores)
             {
                 if (fornecedores.Situacao == 'A')
@@ -134,6 +139,8 @@ namespace Projeto.Cadastro.Manipuladores
                 Console.WriteLine("\nNão há fornecedores inativos cadastrados\n");
                 return;
             }
+
+            Console.Clear();
             foreach (var fornecedores in _listaFornecedores)
             {
                 if (fornecedores.Situacao == 'I')

@@ -41,12 +41,8 @@ namespace Projeto.Cadastro.Entidades
 
         public override string ToString()
         {
-            return Cnpj + "\n" +
-                   RazaoSocial + "\n" +
-                   DataAbertura + "\n" +
-                   UltimaCompra + "\n" +
-                   DataCadastro + "\n" +
-                   Situacao + "\n";
+            return $"| {Cnpj} / {RazaoSocial.TrimEnd()} -> Abertura: {DataAbertura} - Cadastro: {DataCadastro} - Situacao: {Situacao} ";
+
         }
 
         public string FormatarParaArquivo()
@@ -68,7 +64,7 @@ namespace Projeto.Cadastro.Entidades
             string situacao = Situacao == 'A' ? "Ativo" : "Inativo";
             return $"1 - Razão Social: {RazaoSocial}\n" +
                    $"2 - Data de Abertura: {DataAbertura}\n" +
-                   $"2 - Situação {situacao}\n";
+                   $"3 - Situação: {situacao}\n";
         }
 
         public static bool VerificarCnpj(string cnpj)

@@ -9,31 +9,45 @@ namespace Projeto
         {
             // Classe responsavel por validar a existencia ou permissao para manipular arquivos
             ManipuladorArquivos.VerificarArquivosPadrao();
+            var cadastro = new MainCadastro();
 
-            Console.WriteLine("Biltiful Cosméticos\n");
-            Console.WriteLine("Qual módulo deseja acessar?\n");
-            Console.WriteLine("1 - Cadastro");
-            Console.WriteLine("2 - Vendas");
-            Console.WriteLine("3 - Compras");
-            Console.WriteLine("4 - Produção");
-            string opcao = Console.ReadLine();
-
-            switch (opcao)
+            int opcao;
+            bool repetir = true;
+            do
             {
-                case "1":
-                    new MainCadastro().Acesso();
-                    break;
-                case "2":
-                    // TODO: MainVendas.Acesso();
-                    break;
-                case "3":
-                    // TODO: MainCompras.Acesso();
-                    break;
-                case "4":
-                    // TODO: MainProducao.Acesso();
-                    break;
+                Console.Clear();
+                Console.WriteLine("Biltiful Cosméticos\n");
+                Console.WriteLine("Qual módulo deseja acessar?\n");
+                Console.WriteLine("1 - Cadastro");
+                Console.WriteLine("2 - Vendas");
+                Console.WriteLine("3 - Compras");
+                Console.WriteLine("4 - Produção");
+                Console.WriteLine("0 - Fechar");
 
-            }
+                opcao = int.Parse(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 1:
+                        cadastro.Acesso();
+                        break;
+                    case 2:
+                        // TODO: MainVendas.Acesso();
+                        break;
+                    case 3:
+                        // TODO: MainCompras.Acesso();
+                        break;
+                    case 4:
+                        // TODO: MainProducao.Acesso();
+                        break;
+                    case 0:
+                        repetir = false;
+                        break;
+                    default:
+                        Console.WriteLine("Entrada inválida, tente novamente.");
+                        break;
+                }
+            } while (repetir);
         }
     }
 }

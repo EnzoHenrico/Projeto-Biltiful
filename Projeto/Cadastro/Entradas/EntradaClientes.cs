@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Projeto.Cadastro.Entidades;
 using Projeto.Cadastro.Manipuladores;
 
-namespace Projeto.Cadastro
+namespace Projeto.Cadastro.Entradas
 {
     internal class EntradaClientes
     {
@@ -30,7 +30,7 @@ namespace Projeto.Cadastro
 
             Console.WriteLine("Nome (Máximo 50 caracteres):");
             string nome = Console.ReadLine();
-            
+
             Console.WriteLine("Data de nascimento (dd/mm/aaaa):");
             string nascimento = Console.ReadLine().Replace("/", "");
             int dia = int.Parse(nascimento.Substring(0, 2));
@@ -38,7 +38,7 @@ namespace Projeto.Cadastro
             int ano = int.Parse(nascimento.Substring(4, 4));
 
             DateOnly dataNascimento = new DateOnly(ano, mes, dia);
-            
+
             Console.WriteLine("Sexo:");
             char sexo = char.Parse(Console.ReadLine());
 
@@ -58,16 +58,16 @@ namespace Projeto.Cadastro
                  * 3 - Sexo
                  * 4 - Situacao
                  */
-                 opcao = int.Parse(Console.ReadLine());
+                opcao = int.Parse(Console.ReadLine());
 
-                 switch (opcao)
-                 {
-                     case 1:
-                         Console.Write("Alteração nome: ");
-                         string novoNome = Console.ReadLine();
-                         cliente.Nome = novoNome;
-                         break;
-                     case 2:
+                switch (opcao)
+                {
+                    case 1:
+                        Console.Write("Alteração nome: ");
+                        string novoNome = Console.ReadLine();
+                        cliente.Nome = novoNome;
+                        break;
+                    case 2:
                         Console.WriteLine("Alterar data de nascimento (dd/mm/aaaa):");
                         string nascimento = Console.ReadLine().Replace("/", "");
                         int dia = int.Parse(nascimento.Substring(0, 2));
@@ -76,20 +76,20 @@ namespace Projeto.Cadastro
 
                         cliente.DataNascimento = new DateOnly(ano, mes, dia);
                         break;
-                     case 3:
-                        Console.Write("Alteração de Sexo: "); 
+                    case 3:
+                        Console.Write("Alteração de Sexo: ");
                         cliente.Sexo = Console.ReadLine()[0];
                         break;
-                     case 4:
-                         string atual = cliente.Situacao == 'A' ? "ativo" : "inativo"; 
-                         string novo = cliente.Situacao == 'A' ? "intivo" : "ativo";
+                    case 4:
+                        string atual = cliente.Situacao == 'A' ? "ativo" : "inativo";
+                        string novo = cliente.Situacao == 'A' ? "intivo" : "ativo";
 
-                         Console.WriteLine($"O cliente está {atual}, confirmar aletração para {novo}? (s) Sim / (n) Não"); 
-                         if (Console.ReadLine().ToLower() == "s") cliente.InverterSituacao();
-                         break;
+                        Console.WriteLine($"O cliente está {atual}, confirmar aletração para {novo}? (s) Sim / (n) Não");
+                        if (Console.ReadLine().ToLower() == "s") cliente.InverterSituacao();
+                        break;
                     default:
-                         Console.WriteLine("\nOpção inválida, tente novamente.\n");
-                         break;
+                        Console.WriteLine("\nOpção inválida, tente novamente.\n");
+                        break;
                 }
 
             } while (opcao is < 1 or > 3);
