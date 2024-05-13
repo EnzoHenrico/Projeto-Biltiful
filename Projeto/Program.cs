@@ -7,7 +7,7 @@ namespace Projeto
        static void Main(string[] args)
         {
             MainProducao mainProducao = new MainProducao();
-            mainProducao.Executar();
+            mainProducao.Acesso();
         }
     }
 }
