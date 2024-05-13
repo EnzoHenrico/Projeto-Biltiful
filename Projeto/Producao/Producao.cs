@@ -12,15 +12,15 @@ namespace Projeto.Producao
         DateOnly DataProducao;
         string Produto;
         float Quantidade;
-        string Diretorio = @"C:\Biltiful\";
-        string ArquivoProdutos = "Cosmetico.dat";
-        string ArquivoProducao = "Producao.dat";
+        string Diretorio = DicionarioStrings.Diretorio;
+        string ArquivoProdutos = DicionarioStrings.ArquivoProduto;
+        string ArquivoProducao = DicionarioStrings.ArquivoProducao;
         EditorArquivo manipularArquivoProdutos;
         EditorArquivo manipularArquivoProducao;
         public Producao()
         {
-             this.manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
-             this.manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
+            this.manipularArquivoProdutos = new EditorArquivo(Diretorio, ArquivoProdutos);
+            this.manipularArquivoProducao = new EditorArquivo(Diretorio, ArquivoProducao);
         }
         public Producao(int id, DateOnly dataproducao, string produto, float quantidade)
         {
@@ -29,19 +29,19 @@ namespace Projeto.Producao
             this.Produto = produto;
             this.Quantidade = quantidade;
         }
-       public  List<Producao> CopiarArquivo()
+        public List<Producao> CopiarArquivo()
         {
             List<Producao> producaos = new List<Producao>();
-            foreach (var line in manipularArquivoProducao.Ler()) 
+            foreach (var line in manipularArquivoProducao.Ler())
             {
                 if (line != "")
                 {
-                string idCopia = line.Substring(0, 5);
-                string dataCopia = line.Substring(5, 8);
-                string codprodutoCopia = line.Substring(13, 13);
-                string qtditensCopia = line.Substring(26, 5).Insert(3,",");
-                string data = dataCopia.Substring(0, 2) + "/" + dataCopia.Substring(2, 2) + "/" + dataCopia.Substring(4, 4);
-                producaos.Add(new Producao(int.Parse(idCopia), DateOnly.Parse(data), codprodutoCopia, float.Parse(qtditensCopia)));
+                    string idCopia = line.Substring(0, 5);
+                    string dataCopia = line.Substring(5, 8);
+                    string codprodutoCopia = line.Substring(13, 13);
+                    string qtditensCopia = line.Substring(26, 5).Insert(3, ",");
+                    string data = dataCopia.Substring(0, 2) + "/" + dataCopia.Substring(2, 2) + "/" + dataCopia.Substring(4, 4);
+                    producaos.Add(new Producao(int.Parse(idCopia), DateOnly.Parse(data), codprodutoCopia, float.Parse(qtditensCopia)));
                 }
             }
             return producaos;
@@ -59,7 +59,7 @@ namespace Projeto.Producao
                 if (id == idComestico)
                 {
                     string name = line.Substring(13, 20);
-                    verificacaoCosmeticoExiste =  true;
+                    verificacaoCosmeticoExiste = true;
                 }
             }
             return verificacaoCosmeticoExiste;
@@ -84,7 +84,6 @@ namespace Projeto.Producao
             {
                 Console.WriteLine("Digite o ID da produção que deseja localizar");
                 idProducao = int.Parse(Console.ReadLine());
-
             }
             catch (FormatException)
             {
@@ -113,7 +112,6 @@ namespace Projeto.Producao
             {
                 Console.WriteLine("Produção não localizada na base de dados!");
             }
-
         }
         public void RemoverProducao()
         {
@@ -150,9 +148,6 @@ namespace Projeto.Producao
             {
                 Console.WriteLine("O Id fornecido não existe no arquivo");
             }
-
-
-
         }
         public void FormatarProArquivo(List<Producao> producaoLista)
         {
@@ -160,14 +155,14 @@ namespace Projeto.Producao
             foreach (var objeto in producaoLista)
             {
                 string salvarArquivo = "";
-                salvarArquivo = $"{objeto.Id.ToString().PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.Produto}{objeto.Quantidade.ToString("000.00").Remove(3,1)}";
+                salvarArquivo = $"{objeto.Id.ToString().PadLeft(5, '0')}{objeto.DataProducao.ToString("ddMMyyyy")}{objeto.Produto}{objeto.Quantidade.ToString("000.00").Remove(3, 1)}";
                 sw.WriteLine(salvarArquivo);
-                
-            } sw.Close();
+            }
+            sw.Close();
         }
         public float RetornarQuantidadeProducao()
         {
-            float quantidadeProduto = 0 ;
+            float quantidadeProduto = 0;
             do
             {
                 try
@@ -178,15 +173,12 @@ namespace Projeto.Producao
                     if (quantidadeProduto <= 0 || quantidadeProduto > 999.99)
                     {
                         Console.WriteLine("Quantidade inválida!");
-
                     }
                 }
                 catch
                 {
                     Console.WriteLine("ERRO! Por favor digite um valor válido!");
                 }
-
-            
             } while (quantidadeProduto <= 0 || quantidadeProduto > 999.99);
             return quantidadeProduto;
         }
@@ -205,7 +197,7 @@ namespace Projeto.Producao
                     Console.WriteLine("Digite o codigo de barras do cosmético que deseja inciar a produção seguindo a regra de 13 digitos");
                     idCosmetico = Console.ReadLine();
                     verificando = VerificarProduto(idCosmetico);
-                    if(verificando == false)
+                    if (verificando == false)
                     {
                         Console.WriteLine("Cosmético não encontrado na base da dados.");
                     }
@@ -232,16 +224,14 @@ namespace Projeto.Producao
 
         public void MenuNavegacao()
         {
-            Console.WriteLine("==============================");
-            Console.WriteLine(">>>>> MENU NAVEGACAO <<<<<");
-            Console.WriteLine("[1] Navegar para o primeiro");
-            Console.WriteLine("[2] Navegar para o ultimo");
-            Console.WriteLine("[3] Navegar para o próximo");
-            Console.WriteLine("[4] Navegar para o anterior");
-            Console.WriteLine("[5] Sair");
-            Console.WriteLine("==============================");
-
-
+            Console.WriteLine("===============================");
+            Console.WriteLine("|----[ Menu de Navegação ]----|");
+            Console.WriteLine("[ 1 ] Navegar para o primeiro");
+            Console.WriteLine("[ 2 ] Navegar para o ultimo");
+            Console.WriteLine("[ 3 ] Navegar para o próximo");
+            Console.WriteLine("[ 4 ] Navegar para o anterior");
+            Console.WriteLine("[ 0 ] Sair");
+            Console.WriteLine("===============================");
         }
         public void NavegarProducao()
         {
@@ -253,27 +243,23 @@ namespace Projeto.Producao
                 MenuNavegacao();
                 try
                 {
-
-                Console.WriteLine("Digite a opção:");
-                opcao = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Digite a opção:");
+                    opcao = int.Parse(Console.ReadLine());
                 }
                 catch
                 {
-
                     Console.WriteLine("Erro! Valor digitado incorreto.");
                     return;
                 }
                 switch (opcao)
                 {
                     case 1:
-                       
                         Console.WriteLine(producaos.First().ToString());
                         break;
                     case 2:
-                        Console.WriteLine(producaos.Last().ToString()) ;
+                        Console.WriteLine(producaos.Last().ToString());
                         break;
                     case 3:
-
                         indiceAtual = (indiceAtual + 1) % producaos.Count;
                         Console.WriteLine(producaos[indiceAtual].ToString());
                         break;
@@ -281,7 +267,6 @@ namespace Projeto.Producao
                         indiceAtual = (indiceAtual - 1) % producaos.Count;
                         Console.WriteLine(producaos[indiceAtual].ToString());
                         break;
-                     
                 }
                 Console.WriteLine("Pressione enter para continuar");
                 Console.ReadLine();
@@ -291,7 +276,7 @@ namespace Projeto.Producao
         }
         public override string? ToString()
         {
-            return "Id da produção: " + this.Id + "\nData da produção: "  + this.DataProducao + "\nCodigo do produto: " + this.Produto + "\nQuantidade: " + this.Quantidade;
-        } 
+            return "Id da produção: " + this.Id + "\nData da produção: " + this.DataProducao + "\nCodigo do produto: " + this.Produto + "\nQuantidade: " + this.Quantidade;
+        }
     }
 }

@@ -14,13 +14,13 @@ namespace Projeto.Producao
         {
             CaminhoDiretorio = c;
             CaminhoArquivo = a;
-            
+
             if (!Directory.Exists(CaminhoDiretorio))
                 Directory.CreateDirectory(CaminhoDiretorio);
-           
+
             if (!File.Exists(CaminhoDiretorio + CaminhoArquivo))
             {
-                
+
                 var aux = File.Create(CaminhoDiretorio + CaminhoArquivo);
                 aux.Close();
             }

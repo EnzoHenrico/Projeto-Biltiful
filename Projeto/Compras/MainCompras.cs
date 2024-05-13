@@ -232,25 +232,29 @@ namespace Projeto.Compras
                 ChecarExistenciaArquivo();
                 compras = CarregarLista();
                 itensLista = CarregarListaItemCompra();
-                Console.WriteLine("Digite a opção desejada:");
-                Console.WriteLine("1 - Cadastre uma compra;\n" +
-                                  "2 - Liste as Compras\n" +
-                                  "3 - Exclua uma Compra" +
-                                  "0 - Para sair");
+                Console.Clear();
+                Console.WriteLine("|----[ Módulo de Compras ]----|\n");
+                Console.WriteLine("Selecione a opção desejada:");
+                Console.WriteLine("[ 1 ] Cadastre uma compra;\n" +
+                                  "[ 2 ] Liste as Compras\n" +
+                                  "[ 3 ] Exclua uma Compra\n" +
+                                  "[ 0 ] Voltar");
+
+                Console.Write("\nOpção: ");
                 op = int.Parse(Console.ReadLine());
                 switch (op)
                 {
                     case 1:
-                        Console.WriteLine("CADASTRE UMA COMPRA:");
+                        Console.WriteLine("|----[ CADASTRE UMA COMPRA: ]----|\n");
                         CadastroCompra();
                         break;
                     case 2:
-                        Console.WriteLine("ESCOLHA A OPÇÃO DE LISTAGEM:\n" +
-                                          "1 - Escolher uma compra por ID;\n" +
-                                          "2 - Ver primeira Compra;\n" +
-                                          "3 - Ver ultima Compra\n" +
-                                          "4 - Ver TODAS as Compras;\n" +
-                                          "0 - Sair");
+                        Console.WriteLine("|----[ Listagem de Compras ]----|\n" +
+                                          "[ 1 ] Escolher uma compra por ID;\n" +
+                                          "[ 2 ] Ver primeira Compra;\n" +
+                                          "[ 3 ] Ver ultima Compra\n" +
+                                          "[ 4 ] Ver TODAS as Compras;\n" +
+                                          "[ 0 ] Sair");
                         int op2 = int.Parse(Console.ReadLine());
                         switch (op2)
                         {
@@ -274,7 +278,7 @@ namespace Projeto.Compras
                         }
                         break;
                     case 3:
-                        Console.WriteLine("EXCLUA UMA COMPRA:");
+                        Console.WriteLine("|----[ Exclua uma Compra ]----|\n");
                         Console.WriteLine("Digite o ID da compra:");
                         ExcluirCompra(int.Parse(Console.ReadLine()));
                         Console.WriteLine("Compra excluida com sucesso!");

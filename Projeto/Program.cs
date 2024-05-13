@@ -13,25 +13,29 @@ namespace Projeto
         {
             // Classe responsavel por validar a existencia ou permissao para manipular arquivos
             ManipuladorArquivos.VerificarArquivosPadrao();
+
+            // Instancia dos inicializadores de cada módulo
             var cadastro = new MainCadastro();
             var compras = new MainCompras();
             var vendas = new MainVendas();
             var producao = new MainProducao();
 
-            int opcao;
             bool repetir = true;
             do
             {
                 Console.Clear();
-                Console.WriteLine("*** Biltiful Cosméticos ***\n");
-                Console.WriteLine("Qual módulo deseja acessar?\n");
-                Console.WriteLine("1 - Cadastro");
-                Console.WriteLine("2 - Vendas");
-                Console.WriteLine("3 - Compras");
-                Console.WriteLine("4 - Produção");
-                Console.WriteLine("0 - Fechar");
+                Console.WriteLine("+-------------------------------------+");
+                Console.WriteLine("|         Biltiful Cosméticos         |");
+                Console.WriteLine("+-------------------------------------+");
+                Console.WriteLine("\nSeleciona o módulo que deseja acessar:");
+                Console.WriteLine("[ 1 ] Cadastro");
+                Console.WriteLine("[ 2 ] Vendas");
+                Console.WriteLine("[ 3 ] Compras");
+                Console.WriteLine("[ 4 ] Produção");
+                Console.WriteLine("[ 0 ] Fechar");
 
-                opcao = int.Parse(Console.ReadLine());
+                Console.Write("\nOpção: ");
+                int opcao = int.Parse(Console.ReadLine());
 
                 switch (opcao)
                 {

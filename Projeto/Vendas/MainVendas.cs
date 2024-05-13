@@ -30,9 +30,9 @@ namespace Projeto.Vendas
                 Console.Write("Informe o CPF do cliente:");
                 cpf = Console.ReadLine();
                 Console.WriteLine($"\nConfirma CPF? {cpf}\n" +
-                    $"1 - SIM\n" +
-                    $"2 - CORRIGIR\n" +
-                    $"0 - VOLTAR");
+                    $"[ 1 ] Sim\n" +
+                    $"[ 2 ] Corrigir\n" +
+                    $"[ 0 ] Voltar");
                 resetaCpf = int.Parse(Console.ReadLine());
                 if (resetaCpf == 0) break;
             } while (resetaCpf != 1 || !Validacoes.VerificarCpf(cpf));
@@ -50,7 +50,7 @@ namespace Projeto.Vendas
                 {
                     Console.Clear();
                     StreamReader sr = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoProduto);
-                    Console.WriteLine("------------PRODUTOS------------");
+                    Console.WriteLine("|----[ Produtos ]----|");
                     //MOSTRAR PRODUTOS NA TELA
                     while ((linha = sr.ReadLine()) != null)
                     {
@@ -118,8 +118,8 @@ namespace Projeto.Vendas
                 {
                     Console.Clear();
                     Console.WriteLine("Adicionar mais produtos?\n" +
-                        "1 - SIM\n" +
-                        "0 - NÃO");
+                        "[ 1 ] Sim\n" +
+                        "[ 0 ] Não");
                     fimCarrinho = int.Parse(Console.ReadLine());
                 }
                 else
@@ -205,8 +205,8 @@ namespace Projeto.Vendas
                 }
 
                 Console.WriteLine("Deseja efetuar uma nova busca?\n" +
-                    "1 - SIM\n" +
-                    "0 - NÃO");
+                    "[ 1 ] Sim\n" +
+                    "[ 0 ] Não");
                 resetar = int.Parse(Console.ReadLine());
             } while (resetar != 0);
         }
@@ -220,11 +220,15 @@ namespace Projeto.Vendas
 
         public void Acesso()
         {
-            Console.WriteLine("--------------------------MODULO DE VENDAS--------------------------\n" +
-                "1 - Realizar venda;\n" +
-                "2 - Buscar venda;\n" +
-                "3 - Excluir venda;\n" +
-                "0 - SAIR do modulo;");
+            Console.Clear();
+            Console.WriteLine("|----[ Módulo de Vendas ]----|\n\n" + 
+                              "Selecione uma opção para continuar:\n" +
+                              "[ 1 ] Realizar venda\n" + 
+                              "[ 2 ] Buscar venda\n" + 
+                              "[ 3 ] Excluir venda\n" + 
+                              "[ 0 ] Voltar");
+
+            Console.Write("\nOpção: ");
             opcao = int.Parse(Console.ReadLine());
 
             switch (opcao)

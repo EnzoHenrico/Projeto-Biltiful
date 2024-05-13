@@ -13,9 +13,9 @@ namespace Projeto.Producao
         DateOnly DataProducao;
         string MateriaPrima;
         double QuantidadeMateriaPrima;
-        string Diretorio = @"C:\Biltiful\";
-        string ArquivoMateria = "Materia.dat";
-        string ArquivoItemProducao = "ItemProducao.dat";
+        string Diretorio = DicionarioStrings.Diretorio;
+        string ArquivoMateria = DicionarioStrings.ArquivoMateria;
+        string ArquivoItemProducao = DicionarioStrings.ArquivoItemProducao;
         EditorArquivo ManipularArquivoMateria;
         EditorArquivo ManipularArquivoItemProducao;
         public ItemProducao()
