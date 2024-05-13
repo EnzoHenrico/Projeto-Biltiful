@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\enzo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Gustavo Vono\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\enzo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\enzo\\source\\repos\\Projeto-Biltiful\\Projeto\\obj\\",
+      "projectPath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\Projeto.csproj",
+      "packagesPath": "C:\\Users\\Gustavo Vono\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gustavo Vono\\Documents\\TAREFAS\\week4\\BILTIFUL\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\enzo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Gustavo Vono\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -71,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }
