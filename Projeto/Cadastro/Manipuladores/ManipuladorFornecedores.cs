@@ -57,6 +57,13 @@ namespace Projeto.Cadastro.Manipuladores
         public void Cadastrar()
         {
             var novoFornecedor = EntradaFornecedores.CadastrarFornecedor();
+
+            if (BuscarPorCnpj(novoFornecedor.Cnpj) != null)
+            {
+                Console.WriteLine("\nCNPJ já cadastrado, abortando operação.\n");
+                return;
+            }
+
             _listaFornecedores.Add(novoFornecedor);
             Salvar();
         }

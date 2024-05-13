@@ -62,58 +62,57 @@ namespace Projeto.Cadastro.Entidades
         public string GerarStringParaEdicao()
         {
             string situacao = Situacao == 'A' ? "Ativo" : "Inativo";
-            return $"1 - Razão Social: {RazaoSocial}\n" +
-                   $"2 - Data de Abertura: {DataAbertura}\n" +
-                   $"3 - Situação: {situacao}\n";
+            return $"[ 1 ] Razão Social: {RazaoSocial}\n" +
+                   $"[ 2 ] Data de Abertura: {DataAbertura}\n" +
+                   $"[ 3 ] Situação: {situacao}\n";
         }
 
         public static bool VerificarCnpj(string cnpj)
         {
-            // Calcular validade dos dígitos verificadores
-            int digitoVerificador1 = int.Parse(cnpj[9].ToString());
-            int digitoVerificador2 = int.Parse(cnpj[10].ToString());
-
-            // Digito 1 
-            // Multiplicar os primeiros 9 digitos, da direita pra esquerda por 2++
-            int multiplicador = 2, acumulador = 0;
-            for (int i = cnpj.Length - 3; i >= 0; i--)
+            // Verificar condição de existência
+            if (cnpj.Length != 14)
             {
-                acumulador += int.Parse(cnpj[i].ToString()) * multiplicador;
-                multiplicador++;
+                return false;
             }
 
-            // Quando o resto da divisão por 11 for menor que 2, dígito tem que ser igual a 0
+            int digitoVerificador1 = int.Parse(cnpj[12].ToString());
+            int digitoVerificador2 = int.Parse(cnpj[13].ToString());
+
+            // Primeiro dígito verificador
+            int acumulador = 0;
+            int[] mascaraDeValidacao = { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            for (int i = 0; i < 12; i++)
+            {
+                acumulador += int.Parse(cnpj[i].ToString()) * mascaraDeValidacao[i];
+            }
+
+            // Condições exclusivas do digito 1
             int resto = acumulador % 11;
             if (resto < 2 && digitoVerificador1 != 0)
             {
                 return false;
             }
-
-            // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
-            if (resto >= 2 && digitoVerificador1 != (11 - resto))
+            if (resto > 2 && digitoVerificador1 != (11 - resto))
             {
                 return false;
             }
 
-            // Digito 2
-            // Multiplicar os primeiros 9 digitos + o primeiro digito verificador, da direita pra esquerda por 2++
-            multiplicador = 2;
+            // Segundo dígito verificador
             acumulador = 0;
-            for (int i = cnpj.Length - 2; i >= 0; i--)
+            int[] peso2 = { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            for (int i = 0; i < 13; i++)
             {
-                acumulador += int.Parse(cnpj[i].ToString()) * multiplicador;
-                multiplicador++;
+                acumulador += int.Parse(cnpj[i].ToString()) * peso2[i];
             }
 
-            // Quando o resto da divisão por 11 for menor que 2, dígito tem que ser igual a 0
+            // Condições exclusivas do digito 2
             resto = acumulador % 11;
             if (resto < 2 && digitoVerificador2 != 0)
             {
                 return false;
             }
 
-            // Caso contratio, então o dígito verificador deve ser igual a (11 - resto)
-            if (resto >= 2 && digitoVerificador2 != (11 - resto))
+            if (resto > 2 && digitoVerificador2 != (11 - resto))
             {
                 return false;
             }

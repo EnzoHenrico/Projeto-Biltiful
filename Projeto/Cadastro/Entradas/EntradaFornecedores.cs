@@ -13,22 +13,19 @@ namespace Projeto.Cadastro.Entradas
         {
             Console.WriteLine("Digite os dados para cadastrar um novo fornecedor: \n");
             string cnpj;
-            //bool cnpjValido;
-            //do
-            //{
-            //    Console.WriteLine("CNPJ (Apenas números):");
-            //    cnpj = Console.ReadLine();
-            //    cnpjValido = Fornecedor.VerificarCnpj(cnpj);
+            bool cnpjValido;
+            do
+            {
+                Console.WriteLine("CNPJ (Apenas números):");
+                cnpj = Console.ReadLine();
+                cnpjValido = Fornecedor.VerificarCnpj(cnpj);
 
-            //    if (!cnpjValido)
-            //    {
-            //        Console.WriteLine("CPF inválido, digite novamente um valor válido.");
-            //    }
+                if (!cnpjValido)
+                {
+                    Console.WriteLine("\nCNPJ inválido, digite novamente um valor válido.\n");
+                }
 
-            //} while (!cnpjValido);
-
-            Console.WriteLine("CNPJ (Apenas números):");
-            cnpj = Console.ReadLine();
+            } while (!cnpjValido);
 
             Console.WriteLine("Razão social (Máximo 50 caracteres):");
             string razaoSocial = Console.ReadLine();

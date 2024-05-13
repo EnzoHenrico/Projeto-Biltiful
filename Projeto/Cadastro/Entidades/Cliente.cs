@@ -75,6 +75,10 @@ namespace Projeto.Cadastro.Entidades
 
         public static bool VerificarCpf(string cpf)
         {
+            if (cpf.Length != 11)
+            {
+                return false;
+            }
             // Calcular validade dos dígitos verificadores
             int digitoVerificador1 = int.Parse(cpf[9].ToString());
             int digitoVerificador2 = int.Parse(cpf[10].ToString());

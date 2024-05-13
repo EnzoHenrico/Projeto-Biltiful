@@ -57,6 +57,13 @@ namespace Projeto.Cadastro.Manipuladores
         public void Cadastrar()
         {
             var novoCliente = EntradaClientes.CadastrarCliente();
+
+            if (BuscarPorCpf(novoCliente.Cpf) != null)
+            {
+                Console.WriteLine("\nCPF já cadastrado, abortando operação.\n");
+                return;
+            }
+
             _listaClientes.Add(novoCliente);
             Salvar();
         }
