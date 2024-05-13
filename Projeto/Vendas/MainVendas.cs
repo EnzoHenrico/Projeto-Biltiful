@@ -169,20 +169,20 @@ namespace Projeto.Vendas
                         string id = venda.Substring(0, 5);
                         string data = DateTime.ParseExact(venda.Substring(5, 8), "ddMMyyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
                         string cpf = venda.Substring(13, 11);
-                        double valorTotal = double.Parse(venda.Substring(24, 7)) / 100;
+                        double valorTotal = Math.Round(double.Parse(venda.Substring(24, 7)) / 100, 2);
                         string itens = "", linha = "";
 
                         contador++;
                         //BUSCAR ITEMVENDA RELACIONADO A LINHA ESPECIFICA
                         try
                         {
-                            List<string>? ItensRelacionados = ManipuladorArquivosVenda.BuscarLinhas(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, id);
+                            List<string>? ItensRelacionados = ManipuladorArquivosVenda.BuscarLinhas(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoItemVenda, id);
                             foreach (var item in ItensRelacionados)
                             {
                                 string código = item.Substring(5, 13);
                                 int quantidade = int.Parse(item.Substring(18, 3));
                                 double valorUnitario = double.Parse(item.Substring(21, 5)) / 100;
-                                itens += $"Código: {código} - Quantidade: {quantidade} - Valor unitario: R${valorUnitario}\n - Valor total: R${quantidade * valorUnitario}\n";
+                                itens += $"Código: {código} - Quantidade: {quantidade} - Valor unitario: R${valorUnitario}\n - Valor total: R${Math.Round(quantidade * valorUnitario, 2)}\n";
                             }
                         }
                         catch (Exception e)
@@ -215,7 +215,7 @@ namespace Projeto.Vendas
         {
             Console.Write("Informe o ID da venda que deseja excluir:");
             string id = Console.ReadLine().PadLeft(5, '0');
-            ManipuladorArquivosVenda.ExcluirVendaPorId(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, "ItemVenda.dat", id);
+            ManipuladorArquivosVenda.ExcluirVendaPorId(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, DicionarioStrings.ArquivoItemVenda, id);
         }
 
         public void menu()

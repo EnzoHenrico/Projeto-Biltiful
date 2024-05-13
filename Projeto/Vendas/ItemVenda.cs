@@ -35,14 +35,14 @@ namespace Projeto.Vendas
         {
             try
             {
-                StreamWriter sw = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoVenda, true);
+                StreamWriter sw = new(DicionarioStrings.Diretorio + DicionarioStrings.ArquivoItemVenda, true);
                 foreach (var produto in carrinho)
                 {
                     string linha = $"{produto.Id.ToString().PadLeft(5, '0')}" +
                     $"{produto.Produto}" +
                     $"{produto.Quantidade.ToString().PadLeft(3, '0')}" +
-                    $"{(Math.Round(produto.ValorUnitario * 100)).ToString().PadLeft(5, '0')}" +
-                    $"{(Math.Round(produto.TotalItem * 100)).ToString().PadLeft(6, '0')}";
+                    $"{(Math.Round(produto.ValorUnitario * 100, 2)).ToString().PadLeft(5, '0')}" +
+                    $"{(Math.Round(produto.TotalItem * 100, 2)).ToString().PadLeft(6, '0')}";
                     sw.WriteLine(linha);
                 }
                 sw.Close();
