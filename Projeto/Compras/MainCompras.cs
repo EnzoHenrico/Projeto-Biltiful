@@ -224,7 +224,7 @@ namespace Projeto.Compras
         }
         #endregion
 
-        public static void Acesso()
+        public void Acesso()
         {
             int op = 0;
             do
