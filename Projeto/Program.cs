@@ -1,6 +1,7 @@
 ﻿using Projeto.Cadastro;
 using Projeto.Cadastro.Manipuladores;
 using Projeto.Compras;
+using Projeto.Producao;
 using Projeto.Vendas;
 using Projeto.Vendas.Manipuladores;
 
@@ -13,7 +14,9 @@ namespace Projeto
             // Classe responsavel por validar a existencia ou permissao para manipular arquivos
             ManipuladorArquivos.VerificarArquivosPadrao();
             var cadastro = new MainCadastro();
+            var compras = new MainCompras();
             var vendas = new MainVendas();
+            var producao = new MainProducao();
 
             int opcao;
             bool repetir = true;
@@ -36,13 +39,13 @@ namespace Projeto
                         cadastro.Acesso();
                         break;
                     case 2:
-                        vendas.menu();
+                        vendas.Acesso();
                         break;
                     case 3:
-                        MainCompras.Acesso();
+                        compras.Acesso();
                         break;
                     case 4:
-                        // TODO: MainProducao.Acesso();
+                        producao.Acesso();
                         break;
                     case 0:
                         repetir = false;

@@ -218,7 +218,7 @@ namespace Projeto.Vendas
             ManipuladorArquivosVenda.ExcluirVendaPorId(DicionarioStrings.Diretorio, DicionarioStrings.ArquivoVenda, "ItemVenda.dat", id);
         }
 
-        public void menu()
+        public void Acesso()
         {
             Console.WriteLine("--------------------------MODULO DE VENDAS--------------------------\n" +
                 "1 - Realizar venda;\n" +
